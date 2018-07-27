@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -100,7 +101,7 @@ public class ClDeere extends JDialog implements ActionListener{
         lbResult.setFont(font);
         
         btnCalculate = new JButton("Calcular");
-        btnCalculate.setBounds(25, 305, 120, 25);
+        btnCalculate.setBounds(25, 325, 120, 25);
         btnCalculate.addActionListener(this);
     }
     
@@ -125,13 +126,17 @@ public class ClDeere extends JDialog implements ActionListener{
         if(e.getSource() == rbEquation1){
             lbInput1.setText("Ingrese el valor del numerador:");
             txInput1.setEnabled(true);
+            txInput1.setText("");
             lbInput2.setText("Ingrese el valor del denominador:");
+            txInput2.setText("");
             txInput2.setEnabled(true);
         }
         if(e.getSource() == rbEquation2){
             lbInput1.setText("Ingrese la frecuencia de discontinuidad:");
             txInput1.setEnabled(true);
             lbInput2.setText("");
+            txInput1.setText("");
+            txInput2.setText("");
             txInput2.setEnabled(false);
         }
         if(e.getSource() == rbEquation3){
@@ -139,25 +144,39 @@ public class ClDeere extends JDialog implements ActionListener{
             txInput1.setEnabled(true);
             lbInput2.setText("");
             txInput2.setEnabled(false);
+            txInput1.setText("");
+            txInput2.setText("");
         }
         if(e.getSource() == btnCalculate){
-            if(rbEquation1.isSelected()){
-                lbResult.setText( lbResult.getText() + String.valueOf( 
-                        mainWin.getManagementOld().calculateEquation1(
-                        Double.parseDouble(txInput1.getText()), 
-                                Double.parseDouble(txInput2.getText())) ) );
-            }
-            if(rbEquation2.isSelected()){
-                lbResult.setText( lbResult.getText() + String.valueOf(
-                        mainWin.getManagementOld().calculateEquation2(
-                        Double.parseDouble(txInput1.getText()) ) ));
-            }
-            if(rbEquation3.isSelected()){
-                lbResult.setText( lbResult.getText() + String.valueOf(
-                        mainWin.getManagementOld().calculateEquation3(
-                        Double.parseDouble(txInput1.getText()) ) ));
-            }
+                if(rbEquation1.isSelected()){
+                    if(txInput1.getText().length() > 0 && txInput2.getText().length() > 0){
+                        lbResult.setText( lbResult.getText() + String.valueOf( 
+                                mainWin.getManagementOld().calculateEquation1(
+                                Double.parseDouble(txInput1.getText()), 
+                                        Double.parseDouble(txInput2.getText())) ) );                        
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Hay campos vacíos", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                if(rbEquation2.isSelected()){
+                    if(txInput1.getText().length() > 0 ){
+                        lbResult.setText( lbResult.getText() + String.valueOf(
+                                
+                            mainWin.getManagementOld().calculateEquation2(
+                            Double.parseDouble(txInput1.getText()) ) ));
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Hay campos vacíos", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                if(rbEquation3.isSelected()){
+                    if(txInput1.getText().length() > 0 ){
+                        lbResult.setText( lbResult.getText() + String.valueOf(
+                            mainWin.getManagementOld().calculateEquation3(
+                            Double.parseDouble(txInput1.getText()) ) ));
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Hay campos vacíos", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
         }
-    }
-    
+    }    
 }
