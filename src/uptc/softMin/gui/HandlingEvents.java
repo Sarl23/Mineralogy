@@ -62,12 +62,11 @@ public class HandlingEvents implements WindowListener, ActionListener {
             case "terzaghi":
                 mainWindow.goCLTerzaghi();
                 break;
-
             case "deere":
                 mainWindow.goClDeere();
                 break;
             case "wickham":
-                System.out.println("llego a bien old 3");
+                mainWindow.goClRSR();
                 break;
 
             // Begin modern actions

@@ -17,6 +17,7 @@ public class MainWindow extends JFrame {
     private HandlingEvents handlingEvents;
     private CLOld_Terzaghi clOldTerzaghi;
     private ClDeere clDeere;
+    private Cl_RSR clRSR;
 
 
     public MainWindow() {
@@ -44,7 +45,7 @@ public class MainWindow extends JFrame {
         mgOld = new ManagementOld();
         clOldTerzaghi = new CLOld_Terzaghi(this);
         clDeere = new ClDeere(this);
-
+        clRSR = new Cl_RSR(this);
     }
 
     public void addComponents() {
@@ -88,7 +89,11 @@ public class MainWindow extends JFrame {
     }
     
     public void goClDeere() {
-        //clDeere.cleanFields();
+        clDeere.cleanFields();
         clDeere.setVisible(true);
+    }
+    
+    public void goClRSR() {
+        clRSR.setVisible(true);
     }
 }

@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author Alejandro
+ * @author Alejandro y Sergio
  */
 public class ClDeere extends JDialog implements ActionListener{
     
@@ -178,5 +178,18 @@ public class ClDeere extends JDialog implements ActionListener{
                     }
                 }
         }
-    }    
+    }
+
+    public void cleanFields(){
+        txInput1.setText("");
+        txInput1.setEnabled(false);
+        txInput2.setText("");
+        txInput2.setEnabled(false);
+        lbInput1.setText("");
+        lbInput2.setText("");
+        lbResult.setText("RQD: ");
+        rbEquation1.setSelected(false);
+        rbEquation2.setSelected(false);
+        rbEquation3.setSelected(false);
+    }
 }
