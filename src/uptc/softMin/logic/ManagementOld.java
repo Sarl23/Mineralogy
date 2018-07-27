@@ -8,7 +8,9 @@ public class ManagementOld {
     public ManagementOld(){
         
     }
-    // Se calcula Hp
+    
+    /*Terzaghi clasification
+     Se calcula Hp*/
     public double calculateHp(double k,double b, double h,
             double phi, double a){
         return k*(b+h);

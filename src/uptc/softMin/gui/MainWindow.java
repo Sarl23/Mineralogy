@@ -13,8 +13,10 @@ public class MainWindow extends JFrame {
 
     private PanelMainwindow pnlMainwindow;
     private ManagementOld mgOld;
+    private WindowCLOLD winOld;
     private HandlingEvents handlingEvents;
     private CLOld_Terzaghi clOldTerzaghi;
+    private ClDeere clDeere;
 
 
     public MainWindow() {
@@ -38,8 +40,10 @@ public class MainWindow extends JFrame {
     public void beginComponents() {
         handlingEvents = new HandlingEvents(this);
         pnlMainwindow = new PanelMainwindow(this);
+        winOld = new WindowCLOLD(this);
         mgOld = new ManagementOld();
         clOldTerzaghi = new CLOld_Terzaghi(this);
+        clDeere = new ClDeere(this);
 
     }
 
@@ -71,14 +75,20 @@ public class MainWindow extends JFrame {
     }
 
     public void goOLD() {
-        clOldTerzaghi.cleanFields();
-        clOldTerzaghi.setVisible(true);
+        winOld.setVisible(true);
     }
 
     public void goScalab() {
         new WindowSCALAB(this).setVisible(true);
     }
 
-    public void goCLTerzaghi() {new CLOld_Terzaghi(this).setVisible(true);
+    public void goCLTerzaghi() {
+        clOldTerzaghi.cleanFields();
+        clOldTerzaghi.setVisible(true);
+    }
+    
+    public void goClDeere() {
+        //clDeere.cleanFields();
+        clDeere.setVisible(true);
     }
 }

@@ -38,42 +38,33 @@ public class HandlingEvents implements WindowListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         switch (e.getActionCommand()) {
-
             case "Antiguas":
                 mainWindow.goOLD();
                 break;
-
             case "Modernas":
                 mainWindow.goModern();
                 break;
-
             case "Scalab":
                 mainWindow.goScalab();
                 break;
-
             case "Salir":
                 exit();
                 break;
-
             case "Pagina":
                 try {
                     Desktop.getDesktop().browse(new URI("https://github.com/Sarl23"));
-
                 }catch (Exception ex){
-
                 }
                 System.out.println("madar a pagina del grupo");
                 break;
-
             // Begin old actions
             case "terzaghi":
                 mainWindow.goCLTerzaghi();
                 break;
 
             case "deere":
-                System.out.println("llego a bien old 2");
+                mainWindow.goClDeere();
                 break;
             case "wickham":
                 System.out.println("llego a bien old 3");
