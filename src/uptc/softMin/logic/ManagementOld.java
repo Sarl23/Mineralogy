@@ -43,4 +43,18 @@ public class ManagementOld {
         return ( (h/l)*Math.sqrt( (l*l)-(b*b) ) );
     }
     
+    //RQD Deere Classification
+    public double calculateEquation1(double numerator, double denominator){
+        return (numerator/denominator) * 100;
+    }
+    
+    public double calculateEquation2(double value){
+        value = 1/value;
+        return ( 100 * Math.exp(-1 * 0.1 * value) * (0.1 * value + 1) );
+    }
+    
+    public double calculateEquation3(double value){
+        return 115 - 3.3 * value;
+    }
+    
 }
