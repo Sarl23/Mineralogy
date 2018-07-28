@@ -11,6 +11,8 @@ import uptc.softMin.logic.ManagementOld;
 public class MainWindow extends JFrame {
 
 
+    private boolean agree;
+    private Terms terms;
     private PanelMainwindow pnlMainwindow;
     private ManagementOld mgOld;
     private WindowCLOLD winOld;
@@ -35,10 +37,13 @@ public class MainWindow extends JFrame {
     public void begin() {
         beginComponents();
         addComponents();
+        showTerms();
         addWindowListener(handlingEvents);
     }
 
     public void beginComponents() {
+        agree = false;
+        terms = new Terms(this);
         handlingEvents = new HandlingEvents(this);
         pnlMainwindow = new PanelMainwindow(this);
         winOld = new WindowCLOLD(this);
@@ -51,12 +56,23 @@ public class MainWindow extends JFrame {
     public void addComponents() {
         add(pnlMainwindow, BorderLayout.CENTER);
     }
+    
+    public void showTerms(){
+        terms.setVisible(true);
+        if(agree){
+            this.setVisible(true);
+        } else {
+            System.exit(0);
+        }
+    }
 
     public static void main(String[] args) {
         MainWindow mywWindow = new MainWindow();
         mywWindow.begin();
-        mywWindow.setVisible(true);
+    }
 
+    public void setAgree(boolean agree) {
+        this.agree = agree;
     }
 
     public PanelMainwindow getPnlMainwindow() {
