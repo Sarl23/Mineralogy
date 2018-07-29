@@ -19,6 +19,7 @@ public class ManagementOld {
     private int[][] matC2 = {{25, 22, 18}, {23, 19, 14}, {21, 16, 12}, {18, 14, 10}};
     private double parameterA;
     private double parameterB;
+    private double parameterC;
    
     public ManagementOld(){
         begin();
@@ -27,6 +28,7 @@ public class ManagementOld {
     private void begin(){
         parameterA = 0;
         parameterB = 0;
+        parameterC = 0;
     }
     
     /*Terzaghi clasification
@@ -143,12 +145,12 @@ public class ManagementOld {
     public double calculateRSR(int infiltration, int discontiunity){
         double sum = parameterA + parameterB;
         if( sum >= 13 && sum < 44){
-            return matC1[infiltration][discontiunity];
+            parameterC = matC1[infiltration][discontiunity];
         }
         if( sum >= 45 && sum < 75){
-            return matC2[infiltration][discontiunity];
+            parameterC = matC2[infiltration][discontiunity];
         }
-        return 0;
+        return sum + parameterC;
     }
     
 }
