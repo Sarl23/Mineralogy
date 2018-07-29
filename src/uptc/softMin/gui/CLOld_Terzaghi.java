@@ -226,13 +226,11 @@ public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListen
     }
 
     private boolean validateFields() {
-
         return txtConstant.getText().length() + txtDoor.getText().length() > 0;
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-
         char pla = e.getKeyChar();
         if (e.getSource() == txtConstant) {
             if (pla < '0' || pla > '9') {
@@ -263,9 +261,7 @@ public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListen
                 getToolkit().beep();
                 e.consume();
             }
-
         }
-
     }
 
     @Override

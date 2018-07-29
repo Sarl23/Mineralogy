@@ -37,7 +37,7 @@ public class MainWindow extends JFrame {
     public void begin() {
         beginComponents();
         addComponents();
-        showTerms();
+        //showTerms();
         addWindowListener(handlingEvents);
     }
 
@@ -69,6 +69,7 @@ public class MainWindow extends JFrame {
     public static void main(String[] args) {
         MainWindow mywWindow = new MainWindow();
         mywWindow.begin();
+        mywWindow.setVisible(true);
     }
 
     public void setAgree(boolean agree) {
@@ -110,6 +111,7 @@ public class MainWindow extends JFrame {
     }
     
     public void goClRSR() {
+        clRSR.cleanFields();
         clRSR.setVisible(true);
     }
 }
