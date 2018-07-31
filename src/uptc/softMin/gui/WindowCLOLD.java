@@ -98,7 +98,5 @@ public class WindowCLOLD extends JDialog implements ActionListener {
         if (e.getSource() == back) {
             this.dispose();
         }
-
     }
-
 }

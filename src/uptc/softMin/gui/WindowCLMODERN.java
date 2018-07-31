@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 public class WindowCLMODERN extends JDialog implements ActionListener {
 
@@ -18,16 +19,20 @@ public class WindowCLMODERN extends JDialog implements ActionListener {
     private JButton Bieniawski;
     private JButton Barton;
     private JButton backMO;
+    private ImageIcon icon;
 
 
     public WindowCLMODERN(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
         setTitle("Clasificaciones Modernas");
+	setModal(true);
         setLayout(null);
+        setLayout(null);
+        setResizable(false);
         setSize(700, 450);
         setLocationRelativeTo(null);
-        ImageIcon ImageIcon = new ImageIcon("resours/images/icMineria.png");
-        Image image = ImageIcon.getImage();
+        ImageIcon imageIcon = new ImageIcon("resours/images/icMineria.png");
+        Image image = imageIcon.getImage();
         this.setIconImage(image);
         beginComponents();
         addComponents();

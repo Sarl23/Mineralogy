@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/gui/WindowSCALAB.java</file>
-            <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/gui/WindowCLOLD.java</file>
+            <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/logic/ManagementOld.java</file>
+            <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/gui/HandlingEvents.java</file>
             <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/gui/MainWindow.java</file>
-            <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/gui/WindowCLMODERN.java</file>
+            <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/logic/SoftwareMinerology.java</file>
         </group>
     </open-files>
 </project-private>
