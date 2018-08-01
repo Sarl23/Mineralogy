@@ -18,7 +18,7 @@ public class HandlingEvents implements WindowListener, ActionListener {
 
     public MainWindow mainWindow;
     public WindowCLOLD windowCLOLD;
-        public static final String clOLD = "Antiguas";
+    public static final String clOLD = "Antiguas";
     public static final String clMODERN = "Modernas";
     public static final String clSCALAB = "Scalab";
     public static final String EXIT = "Salir";
@@ -27,12 +27,9 @@ public class HandlingEvents implements WindowListener, ActionListener {
     public static final String TERZAGHI = "terzaghi";
     public static final String DEERE = "deere";
     public static final String WICKHAM = "wickham";
-    
-    
-    public static final String BARTON = "barton";
-    
-    public static final String BIENIAW = "Bieniaw";
 
+    public static final String BARTON = "barton";
+    public static final String BIENIAW = "bieniaw";
 
     public HandlingEvents(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
@@ -56,7 +53,7 @@ public class HandlingEvents implements WindowListener, ActionListener {
             case "Pagina":
                 try {
                     Desktop.getDesktop().browse(new URI("https://github.com/Sarl23/Mineralogy/graphs/contributors"));
-                }catch (Exception ex){
+                } catch (Exception ex) {
                 }
                 System.out.println("madar a pagina del grupo");
                 break;
@@ -75,8 +72,8 @@ public class HandlingEvents implements WindowListener, ActionListener {
             case "barton":
                 mainWindow.goBarton();
                 break;
-            case "Bieniaw":
-                System.out.println("llego a bien mod");
+            case "bieniaw":
+                mainWindow.goBieniawski();
                 break;
         }
 
@@ -84,7 +81,7 @@ public class HandlingEvents implements WindowListener, ActionListener {
 
     @Override
     public void windowOpened(WindowEvent e) {
-        
+
     }
 
     @Override
@@ -95,7 +92,6 @@ public class HandlingEvents implements WindowListener, ActionListener {
 
     @Override
     public void windowClosed(WindowEvent e) {
-
 
     }
 

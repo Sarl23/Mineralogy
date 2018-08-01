@@ -13,16 +13,15 @@ import javax.swing.JDialog;
  *
  * @author Alejandro
  */
-public class Cl_Q extends JDialog{
-    
+public class Cl_Q extends JDialog {
+
     private MainWindow mainWin;
-    
-    
-    public Cl_Q(MainWindow mainWin){
+
+    public Cl_Q(MainWindow mainWin) {
         this.mainWin = mainWin;
         setTitle("Clasificacion Q");
-	setResizable(false);
-	setModal(true);
+        setResizable(false);
+        setModal(true);
         setResizable(false);
         setLayout(null);
         setSize(600, 550);
@@ -33,13 +32,13 @@ public class Cl_Q extends JDialog{
         beginComponents();
         addComponents();
     }
-    
-    public void beginComponents(){
-        
+
+    public void beginComponents() {
+
     }
-    
-    public void addComponents(){
-        
+
+    public void addComponents() {
+
     }
-    
+
 }

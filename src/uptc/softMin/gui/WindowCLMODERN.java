@@ -21,11 +21,10 @@ public class WindowCLMODERN extends JDialog implements ActionListener {
     private JButton backMO;
     private ImageIcon icon;
 
-
     public WindowCLMODERN(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
         setTitle("Clasificaciones Modernas");
-	setModal(true);
+        setModal(true);
         setLayout(null);
         setLayout(null);
         setResizable(false);
@@ -36,7 +35,6 @@ public class WindowCLMODERN extends JDialog implements ActionListener {
         this.setIconImage(image);
         beginComponents();
         addComponents();
-
 
     }
 
@@ -61,10 +59,10 @@ public class WindowCLMODERN extends JDialog implements ActionListener {
 
         Barton = new JButton("Clasificación de Barton et al.(Q)");
         Barton.setBounds(280, 310, 220, 30);
-        Barton.setForeground(Color.BLACK);
-        Barton.setFont(new Font("mi font", Font.BOLD, 12));
         Barton.setActionCommand(HandlingEvents.BARTON);
         Barton.addActionListener(mainWindow.getHandlingEvents());
+        Barton.setForeground(Color.BLACK);
+        Barton.setFont(new Font("mi font", Font.BOLD, 12));
 
         backMO = new JButton("Volver");
         backMO.setBounds(20, 360, 90, 30);
@@ -83,7 +81,6 @@ public class WindowCLMODERN extends JDialog implements ActionListener {
         add(labimgModern);
 
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
