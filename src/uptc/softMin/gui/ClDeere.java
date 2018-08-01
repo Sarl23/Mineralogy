@@ -134,6 +134,10 @@ public class ClDeere extends JDialog implements ActionListener, KeyListener {
         add(btnHelpDeere);
     }
 
+    public JLabel getLbResult() {
+        return lbResult;
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == rbEquation1) {
