@@ -79,7 +79,7 @@ public class Cl_RSR extends JDialog implements ActionListener, KeyListener{
         setLayout(null);
         setSize(600, 550);
         setLocationRelativeTo(null);
-        ImageIcon ImageIcon = new ImageIcon("resours/icMineria.png");
+        ImageIcon ImageIcon = new ImageIcon("resours/images/icMineria.png");
         Image image = ImageIcon.getImage();
         this.setIconImage(image);
         beginComponents();
