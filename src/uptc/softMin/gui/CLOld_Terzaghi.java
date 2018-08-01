@@ -58,7 +58,7 @@ public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListen
         setLayout(null);
         setSize(550, 350);
         setLocationRelativeTo(null);
-        ImageIcon ImageIcon = new ImageIcon("resours/icMineria.png");
+       ImageIcon ImageIcon = new ImageIcon("resours/images/icMineria.png");
         Image image = ImageIcon.getImage();
         this.setIconImage(image);
         beginComponents();
