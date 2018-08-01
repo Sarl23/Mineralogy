@@ -74,6 +74,10 @@ public class MainWindow extends JFrame {
         mywWindow.setVisible(true);
     }
 
+    public ClDeere getClDeere() {
+        return clDeere;
+    }
+    
     public void setAgree(boolean agree) {
         this.agree = agree;
     }
