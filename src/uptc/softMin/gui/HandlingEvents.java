@@ -27,8 +27,10 @@ public class HandlingEvents implements WindowListener, ActionListener {
     public static final String TERZAGHI = "terzaghi";
     public static final String DEERE = "deere";
     public static final String WICKHAM = "wickham";
-
-
+    
+    
+    public static final String BARTON = "barton";
+    
     public static final String BIENIAW = "Bieniaw";
 
 
@@ -70,9 +72,11 @@ public class HandlingEvents implements WindowListener, ActionListener {
                 break;
 
             // Begin modern actions
+            case "barton":
+                mainWindow.goBarton();
+                break;
             case "Bieniaw":
                 System.out.println("llego a bien mod");
-
                 break;
         }
 

@@ -5,12 +5,15 @@
  */
 package uptc.softMin.gui;
 
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -65,6 +68,7 @@ public class Cl_RSR extends JDialog implements ActionListener, KeyListener{
     private JTextField txFracture;
     //Buttons
     private JButton btnCalculate;
+    private JButton btnHelpRSR;
     
     public Cl_RSR(MainWindow mainWin){
         this.mainWin = mainWin;
@@ -188,11 +192,15 @@ public class Cl_RSR extends JDialog implements ActionListener, KeyListener{
         cbDiscontinuity.addActionListener(this);
         
         btnCalculate = new JButton("Calcular");
-        btnCalculate.setBounds(30, 470, 100, 20);
+        btnCalculate.setBounds(30, 470, 100, 30);
         btnCalculate.addActionListener(this);
         
+        btnHelpRSR  = new JButton("Ayuda");
+        btnHelpRSR.setBounds(150, 470, 100, 30);
+        btnHelpRSR.addActionListener(this);
+        
         lbResult = new JLabel("RSR: ");
-        lbResult.setBounds(200, 465, 150, 25);
+        lbResult.setBounds(270, 465, 150, 25);
         lbResult.setFont(font);
         
     }
@@ -226,6 +234,7 @@ public class Cl_RSR extends JDialog implements ActionListener, KeyListener{
         add(lbDiscontinuity);
         add(cbDiscontinuity);
         add(btnCalculate);
+        add(btnHelpRSR);
         add(lbResult);
     }
 
@@ -288,6 +297,19 @@ public class Cl_RSR extends JDialog implements ActionListener, KeyListener{
                 JOptionPane.showMessageDialog(null, "Hay campos vacíos", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
+        if(e.getSource() == btnHelpRSR){
+            helpPdfRSR();
+            
+        }
+    }
+    
+    private void helpPdfRSR() {
+       try{
+            File path = new File("resours/Files/ayudaRSR.pdf");
+            Desktop.getDesktop().open(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean validateFields(){
@@ -333,5 +355,7 @@ public class Cl_RSR extends JDialog implements ActionListener, KeyListener{
     public void keyReleased(KeyEvent e) {
         
     }
+
+    
     
 }

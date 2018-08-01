@@ -20,6 +20,7 @@ public class MainWindow extends JFrame {
     private CLOld_Terzaghi clOldTerzaghi;
     private ClDeere clDeere;
     private Cl_RSR clRSR;
+    private Cl_Q clBarton;
 
 
     public MainWindow() {
@@ -51,6 +52,7 @@ public class MainWindow extends JFrame {
         clOldTerzaghi = new CLOld_Terzaghi(this);
         clDeere = new ClDeere(this);
         clRSR = new Cl_RSR(this);
+        clBarton = new Cl_Q(this);
     }
 
     public void addComponents() {
@@ -113,5 +115,10 @@ public class MainWindow extends JFrame {
     public void goClRSR() {
         clRSR.cleanFields();
         clRSR.setVisible(true);
+    }
+    
+    public void goBarton() {
+        //clBarton.cleanFields();
+        clBarton.setVisible(true);
     }
 }
