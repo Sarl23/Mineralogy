@@ -17,6 +17,7 @@ import java.io.IOException;
 public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListener {
 
     MainWindow mainWindow;
+    private String phi;
     //Buttons
     private JButton help;
     private JButton calculate;
@@ -66,6 +67,7 @@ public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListen
     }
 
     private void beginComponents() {
+        phi = "\u03A6";
         labtitle = new JLabel("Ingrese los datos para la Clasificación Terzaghi");
         labtitle.setBounds(20, 10, 280, 30);
         
@@ -105,7 +107,7 @@ public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListen
         lbValL = new JLabel("");
         lbValL.setBounds(380, 105, 90, 20);
 
-        labAngle = new JLabel("Ángulo de fricción interna de(ᶲ)");
+        labAngle = new JLabel("Ángulo de fricción interna de (" + phi +")");
         labAngle.setBounds(20, 130, 210, 30);
         txtAngle = new JTextField("");
         txtAngle.addKeyListener(this);
@@ -232,32 +234,33 @@ public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListen
     @Override
     public void keyTyped(KeyEvent e) {
         char pla = e.getKeyChar();
+        
         if (e.getSource() == txtConstant) {
-            if (pla < '0' || pla > '9') {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla !='.' || txtConstant.getText().contains("."))) {
                 getToolkit().beep();
                 e.consume();
             }
 
         } else if (e.getSource() == txtHTunnel) {
-            if (pla < '0' || pla > '9') {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla !='.' || txtHTunnel.getText().contains("."))) {
                 getToolkit().beep();
                 e.consume();
             }
 
         } else if (e.getSource() == txtWTunnel) {
-            if (pla < '0' || pla > '9') {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla !='.' || txtWTunnel.getText().contains("."))) {
                 getToolkit().beep();
                 e.consume();
             }
 
         }else if(e.getSource()==txtAngle){
-            if (pla < '0' || pla > '9') {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla !='.' || txtAngle.getText().contains("."))) {
                 getToolkit().beep();
                 e.consume();
             }
         }
         else if(e.getSource() == txtDoor){
-            if (pla < '0' || pla > '9') {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla !='.' || txtDoor.getText().contains("."))) {
                 getToolkit().beep();
                 e.consume();
             }

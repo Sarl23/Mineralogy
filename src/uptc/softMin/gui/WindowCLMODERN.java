@@ -63,6 +63,8 @@ public class WindowCLMODERN extends JDialog implements ActionListener {
         Barton.setBounds(280, 310, 220, 30);
         Barton.setForeground(Color.BLACK);
         Barton.setFont(new Font("mi font", Font.BOLD, 12));
+        //Barton.setActionListener(HandlingEvents.BARTON);
+        Barton.addActionListener(mainWindow.getHandlingEvents());
 
         backMO = new JButton("Volver");
         backMO.setBounds(20, 360, 90, 30);

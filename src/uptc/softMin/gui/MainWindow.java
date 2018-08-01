@@ -37,7 +37,7 @@ public class MainWindow extends JFrame {
     public void begin() {
         beginComponents();
         addComponents();
-        //showTerms();
+        //showTerms();   // show  lincese
         addWindowListener(handlingEvents);
     }
 

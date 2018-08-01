@@ -9,6 +9,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -22,7 +24,7 @@ import javax.swing.JTextField;
 /**
  * @author Sergio y Alejandro
  */
-public class Cl_RSR extends JDialog implements ActionListener{
+public class Cl_RSR extends JDialog implements ActionListener, KeyListener{
     
     private MainWindow mainWin;
     private Font font;
@@ -140,6 +142,7 @@ public class Cl_RSR extends JDialog implements ActionListener{
         groupFracture.add(rbFeet);
         txFracture = new JTextField("");
         txFracture.setBounds(30, 310, 60, 20);
+        txFracture.addKeyListener(this);
         
         lbCourse = new JLabel("Rumbo");
         lbCourse.setBounds(200, 240, 100, 20);
@@ -308,6 +311,27 @@ public class Cl_RSR extends JDialog implements ActionListener{
         cbInfiltration.setSelectedIndex(0);
         cbDiscontinuity.setSelectedIndex(0);
         lbResult.setText("RSR: ");
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+         char val = e.getKeyChar();
+        if (e.getSource() == txFracture) {
+            if (((val < '0') || (val > '9')) && (val != KeyEvent.VK_BACK_SPACE) && (val != '.' || txFracture.getText().contains("."))) {
+                getToolkit().beep();
+                e.consume();
+            }
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+       
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        
     }
     
 }

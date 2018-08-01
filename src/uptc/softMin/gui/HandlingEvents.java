@@ -53,7 +53,7 @@ public class HandlingEvents implements WindowListener, ActionListener {
                 break;
             case "Pagina":
                 try {
-                    Desktop.getDesktop().browse(new URI("https://github.com/Sarl23"));
+                    Desktop.getDesktop().browse(new URI("https://github.com/Sarl23/Mineralogy/graphs/contributors"));
                 }catch (Exception ex){
                 }
                 System.out.println("madar a pagina del grupo");
