@@ -48,13 +48,12 @@ public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListen
     private JTextField txtAngle;
     private JTextField txtDoor;
 
-
     public CLOld_Terzaghi(MainWindow mainWindow) {
 
         this.mainWindow = mainWindow;
         setTitle("Clasificacion Terzaghi");
-	setResizable(false);
-	setModal(true);
+        setResizable(false);
+        setModal(true);
         setResizable(false);
         setLayout(null);
         setSize(550, 350);
@@ -70,7 +69,7 @@ public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListen
         phi = "\u03A6";
         labtitle = new JLabel("Ingrese los datos para la Clasificación Terzaghi");
         labtitle.setBounds(20, 10, 280, 30);
-        
+
         lbTitle2 = new JLabel("Resultados");
         lbTitle2.setBounds(350, 10, 80, 30);
 
@@ -79,7 +78,7 @@ public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListen
         txtConstant = new JTextField("");
         txtConstant.addKeyListener(this);
         txtConstant.setBounds(220, 45, 90, 20);
-        
+
         lbHp = new JLabel("Hp: ");
         lbHp.setBounds(350, 45, 40, 20);
         lbValHp = new JLabel("");
@@ -90,29 +89,29 @@ public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListen
         txtWTunnel = new JTextField("");
         txtWTunnel.addKeyListener(this);
         txtWTunnel.setBounds(220, 75, 90, 20);
-        
+
         lbH2 = new JLabel("H2: ");
         lbH2.setBounds(350, 75, 40, 20);
         lbValH2 = new JLabel("");
         lbValH2.setBounds(380, 75, 90, 20);
-        
+
         labHTunnel = new JLabel("Altura media del túnel (H)");
         labHTunnel.setBounds(20, 100, 160, 30);
         txtHTunnel = new JTextField("");
         txtHTunnel.addKeyListener(this);
         txtHTunnel.setBounds(220, 105, 90, 20);
-        
+
         lbL = new JLabel("L: ");
         lbL.setBounds(350, 105, 40, 20);
         lbValL = new JLabel("");
         lbValL.setBounds(380, 105, 90, 20);
 
-        labAngle = new JLabel("Ángulo de fricción interna de (" + phi +")");
+        labAngle = new JLabel("Ángulo de fricción interna de (" + phi + ")");
         labAngle.setBounds(20, 130, 210, 30);
         txtAngle = new JTextField("");
         txtAngle.addKeyListener(this);
         txtAngle.setBounds(220, 135, 90, 20);
-        
+
         lbA1 = new JLabel("A1: ");
         lbA1.setBounds(350, 135, 40, 20);
         lbValA1 = new JLabel("");
@@ -128,12 +127,12 @@ public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListen
         lbA2.setBounds(350, 165, 40, 20);
         lbValA2 = new JLabel("");
         lbValA2.setBounds(380, 165, 90, 20);
-        
+
         lbA3 = new JLabel("A3: ");
         lbA3.setBounds(350, 195, 40, 20);
         lbValA3 = new JLabel("");
         lbValA3.setBounds(380, 195, 90, 20);
-        
+
         calculate = new JButton("Calcular (Reporte)");
         calculate.setBounds(20, 240, 150, 30);
         calculate.addActionListener(this);
@@ -186,7 +185,7 @@ public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListen
 
     //Metodo que abre el pdf de ayuda
     private void helpJDialog() {
-        try{
+        try {
             File path = new File("resours/Files/ayudaTerzaghi.pdf");
             Desktop.getDesktop().open(path);
         } catch (IOException e) {
@@ -201,12 +200,12 @@ public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListen
             double hTunnel = Double.parseDouble(txtHTunnel.getText());
             double angle = Double.parseDouble(txtAngle.getText());
             double door = Double.parseDouble(txtDoor.getText());
-            lbValA1.setText( String.valueOf(mainWindow.getManagementOld().calculateA1(hTunnel, angle)) );
-            lbValA2.setText( String.valueOf(mainWindow.getManagementOld().calculateA2(constant, wTunnel, hTunnel, angle, door)) );
-            lbValA3.setText( String.valueOf(mainWindow.getManagementOld().calculateA3(wTunnel, hTunnel)) );
-            lbValH2.setText( String.valueOf(mainWindow.getManagementOld().calculateH2(hTunnel, wTunnel, angle)) );
-            lbValHp.setText( String.valueOf(mainWindow.getManagementOld().calculateHp(constant, wTunnel, hTunnel, angle, door)) );
-            lbValL.setText( String.valueOf(mainWindow.getManagementOld().calculateL(wTunnel, hTunnel, angle)) );
+            lbValA1.setText(String.valueOf(mainWindow.getManagementOld().calculateA1(hTunnel, angle)));
+            lbValA2.setText(String.valueOf(mainWindow.getManagementOld().calculateA2(constant, wTunnel, hTunnel, angle, door)));
+            lbValA3.setText(String.valueOf(mainWindow.getManagementOld().calculateA3(wTunnel, hTunnel)));
+            lbValH2.setText(String.valueOf(mainWindow.getManagementOld().calculateH2(hTunnel, wTunnel, angle)));
+            lbValHp.setText(String.valueOf(mainWindow.getManagementOld().calculateHp(constant, wTunnel, hTunnel, angle, door)));
+            lbValL.setText(String.valueOf(mainWindow.getManagementOld().calculateL(wTunnel, hTunnel, angle)));
         } else {
             JOptionPane.showMessageDialog(null, "Campos Vacios", "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -224,7 +223,7 @@ public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListen
         lbValA3.setText("");
         lbValH2.setText("");
         lbValHp.setText("");
-        lbValL.setText("");                
+        lbValL.setText("");
     }
 
     private boolean validateFields() {
@@ -234,33 +233,32 @@ public class CLOld_Terzaghi extends JDialog implements ActionListener, KeyListen
     @Override
     public void keyTyped(KeyEvent e) {
         char pla = e.getKeyChar();
-        
+
         if (e.getSource() == txtConstant) {
-            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla !='.' || txtConstant.getText().contains("."))) {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txtConstant.getText().contains("."))) {
                 getToolkit().beep();
                 e.consume();
             }
 
         } else if (e.getSource() == txtHTunnel) {
-            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla !='.' || txtHTunnel.getText().contains("."))) {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txtHTunnel.getText().contains("."))) {
                 getToolkit().beep();
                 e.consume();
             }
 
         } else if (e.getSource() == txtWTunnel) {
-            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla !='.' || txtWTunnel.getText().contains("."))) {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txtWTunnel.getText().contains("."))) {
                 getToolkit().beep();
                 e.consume();
             }
 
-        }else if(e.getSource()==txtAngle){
-            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla !='.' || txtAngle.getText().contains("."))) {
+        } else if (e.getSource() == txtAngle) {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txtAngle.getText().contains("."))) {
                 getToolkit().beep();
                 e.consume();
             }
-        }
-        else if(e.getSource() == txtDoor){
-            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla !='.' || txtDoor.getText().contains("."))) {
+        } else if (e.getSource() == txtDoor) {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txtDoor.getText().contains("."))) {
                 getToolkit().beep();
                 e.consume();
             }
