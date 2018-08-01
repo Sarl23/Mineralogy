@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 package uptc.softMin.gui;
+
 import javax.swing.*;
 import java.awt.*;
 import uptc.softMin.logic.ManagementOld;
 
 public class MainWindow extends JFrame {
-
 
     private boolean agree;
     private Terms terms;
@@ -21,7 +21,7 @@ public class MainWindow extends JFrame {
     private ClDeere clDeere;
     private Cl_RSR clRSR;
     private Cl_Q clBarton;
-
+    private Cl_Bieniawski cl_Bieniaw;
 
     public MainWindow() {
         setTitle("MINING TOOLS y  CLASIFICACIONES GEOMECANICAS");
@@ -34,7 +34,7 @@ public class MainWindow extends JFrame {
         Image image = ImageIcon.getImage();
         this.setIconImage(image);
     }
-    
+
     public void begin() {
         beginComponents();
         addComponents();
@@ -53,15 +53,16 @@ public class MainWindow extends JFrame {
         clDeere = new ClDeere(this);
         clRSR = new Cl_RSR(this);
         clBarton = new Cl_Q(this);
+        cl_Bieniaw=new Cl_Bieniawski(this);
     }
 
     public void addComponents() {
         add(pnlMainwindow, BorderLayout.CENTER);
     }
-    
-    public void showTerms(){
+
+    public void showTerms() {
         terms.setVisible(true);
-        if(agree){
+        if (agree) {
             this.setVisible(true);
         } else {
             System.exit(0);
@@ -89,7 +90,7 @@ public class MainWindow extends JFrame {
     public HandlingEvents getHandlingEvents() {
         return handlingEvents;
     }
-    
+
     public ManagementOld getManagementOld() {
         return mgOld;
     }
@@ -110,19 +111,24 @@ public class MainWindow extends JFrame {
         clOldTerzaghi.cleanFields();
         clOldTerzaghi.setVisible(true);
     }
-    
+
     public void goClDeere() {
         clDeere.cleanFields();
         clDeere.setVisible(true);
     }
-    
+
     public void goClRSR() {
         clRSR.cleanFields();
         clRSR.setVisible(true);
     }
-    
+
     public void goBarton() {
         //clBarton.cleanFields();
         clBarton.setVisible(true);
+    }
+
+    public void goBieniawski() {
+        //cl_Bieniawski.cleanFieldes();
+        cl_Bieniaw.setVisible(true);
     }
 }

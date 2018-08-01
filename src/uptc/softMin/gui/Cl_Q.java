@@ -21,8 +21,9 @@ import javax.swing.JTextArea;
  *
  * @author Alejandro
  */
+
 public class Cl_Q extends JDialog implements ActionListener{
-    
+ 
     private MainWindow mainWin;
     private JButton btnGetRQD;    
     //ComboBox
@@ -41,8 +42,8 @@ public class Cl_Q extends JDialog implements ActionListener{
     public Cl_Q(MainWindow mainWin){
         this.mainWin = mainWin;
         setTitle("Clasificacion Q");
-	setResizable(false);
-	setModal(true);
+        setResizable(false);
+        setModal(true);
         setResizable(false);
         setLayout(null);
         setSize(600, 550);
@@ -53,6 +54,7 @@ public class Cl_Q extends JDialog implements ActionListener{
         beginComponents();
         addComponents();
     }
+
     
     public void beginComponents(){
         lbDescriptionRQD = new JLabel("Descripción RQD");
@@ -163,6 +165,7 @@ public class Cl_Q extends JDialog implements ActionListener{
                 txValueJn.setEditable(false);
                 break;    
         }
+
     }
-    
+
 }
