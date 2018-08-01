@@ -166,6 +166,7 @@ public class ClDeere extends JDialog implements ActionListener, KeyListener {
             txInput2.setText("");
         }
         if (e.getSource() == btnCalculate) {
+            lbResult.setText("RQD: ");
             if (rbEquation1.isSelected()) {
                 if (txInput1.getText().length() > 0 && txInput2.getText().length() > 0) {
                     lbResult.setText(lbResult.getText() + String.valueOf(
