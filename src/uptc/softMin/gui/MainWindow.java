@@ -24,7 +24,7 @@ public class MainWindow extends JFrame {
     private Cl_Bieniawski cl_Bieniaw;
 
     public MainWindow() {
-        setTitle("MINING TOOLS y  CLASIFICACIONES GEOMECANICAS");
+        setTitle("MINING TOOLS Y CLASIFICACIONES GEOMECANICAS");
         setSize(700, 450);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);

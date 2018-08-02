@@ -39,7 +39,7 @@ public class PanelMainwindow extends JPanel {
     
     private void beginComponents() {
 
-        titleSoft = new JLabel("MINING TOOLS y  CLASIFICACIONES GEOMECANICAS");
+        titleSoft = new JLabel("MINING TOOLS Y CLASIFICACIONES GEOMECANICAS");
         titleSoft.setBounds(20, 35, 690, 30);
         titleSoft.setForeground(Color.GREEN);
         titleSoft.setFont(new Font("mi font", Font.BOLD, 25));
