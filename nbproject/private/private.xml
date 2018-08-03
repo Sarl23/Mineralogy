@@ -3,22 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <file>file:/C:/Users/Alejandro/Documents/NetBeansProjects/Mineralogy/src/uptc/softMin/gui/MainWindow.java</file>
-            <file>file:/C:/Users/Alejandro/Documents/NetBeansProjects/Mineralogy/src/uptc/softMin/logic/ManagementOld.java</file>
-            <file>file:/C:/Users/Alejandro/Documents/NetBeansProjects/Mineralogy/src/uptc/softMin/gui/Cl_RSR.java</file>
-=======
-            <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/logic/ManagementOld.java</file>
-            <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/gui/HandlingEvents.java</file>
-            <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/gui/MainWindow.java</file>
-            <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/logic/SoftwareMinerology.java</file>
->>>>>>> 76522be190fd78cfe0aca78cb9f151ac3077d8d8
-=======
-            <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/gui/ClDeere.java</file>
-            <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/gui/CLOld_Terzaghi.java</file>
-            <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/gui/Cl_RSR.java</file>
->>>>>>> 4f29cab69a3feeb80b49ce3ec4c61953aeaee88a
+            <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/gui/Cl_Q.java</file>
+            <file>file:/D:/Mis%20documentos/Documentos/NetBeansProjects/SoftwareMinerology/src/uptc/softMin/gui/Cl_Bieniawski.java</file>
         </group>
     </open-files>
 </project-private>
