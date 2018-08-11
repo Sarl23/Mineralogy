@@ -30,11 +30,14 @@ public class Cl_Q extends JDialog implements ActionListener{
     private MainWindow mainWin;
     private Font font;
     private JButton btnGetRQD;
+    private JButton btnTables;
     //ComboBox
     private JComboBox cbDescriptionRQD;
     private JComboBox cbDescriptionJn;
     private JComboBox cbDescriptionJr;
     private JComboBox cbDescriptionJa;
+    private JComboBox cbDescriptionJw;
+    private JComboBox cbSRF;
     //Text Area
     private JTextArea txvalueRQD;
     private JTextArea txValueJn;
@@ -47,15 +50,24 @@ public class Cl_Q extends JDialog implements ActionListener{
     private JLabel lbValueJr;
     private JLabel lbDescriptionJa;
     private JLabel lbValueJa;
+    private JLabel lbDescriptionJw;
+    private JLabel lbValueJw;
+    private JLabel lbDescriptionSRF;
+    private JLabel lbInstructions;
+    private JLabel lbValueSRF;
     //RadioButton
     private ButtonGroup groupJn;
     private ButtonGroup groupJa;
+    private ButtonGroup groupTables;
     private JRadioButton rbTunnel;
     private JRadioButton rbPortal;
     private JRadioButton rbNone;
     private JRadioButton rbOptionAJa;
     private JRadioButton rbOptionBJa;
     private JRadioButton rbOptionCJa;
+    private JRadioButton rbTable1;
+    private JRadioButton rbTable2;
+    private JRadioButton rbTable3;
     
     
     public Cl_Q(MainWindow mainWin){
@@ -65,7 +77,7 @@ public class Cl_Q extends JDialog implements ActionListener{
         setModal(true);
         setResizable(false);
         setLayout(null);
-        setSize(650, 550);
+        setSize(670, 600);
         setLocationRelativeTo(null);
         ImageIcon ImageIcon = new ImageIcon("resours/icMineria.png");
         Image image = ImageIcon.getImage();
@@ -201,6 +213,81 @@ public class Cl_Q extends JDialog implements ActionListener{
         lbValueJa = new JLabel("Valor: ");
         lbValueJa.setBounds(250, 285, 80, 20);
         
+        lbDescriptionJw = new JLabel("Factor de reducción por agua en las diaclasas");
+        lbDescriptionJw.setBounds(25, 350, 300, 20);
+        lbDescriptionJw.setFont(font);
+        
+        cbDescriptionJw = new JComboBox(new Object[]{
+                "<HTML>A. Excavación seca o poca infiltración <br>"
+                        + "( < 5 lit/min localmente )</HTML>",
+                "<HTML>B. Infiltración o presión alta en roca <br>"
+                        + "competente con diaclasas sin relleno</HTML>",
+                "<HTML>C. Gran infiltración o presión alta en <br>"
+                        + "roca competente con diaclasas sin relleno</HTML>",
+                "<HTML>D. Gran infiltración a presión alta, lavado <br>"
+                        + "importante de los rellenos</HTML>",
+                "<HTML>E. Infiltración o presión excepcionalmente alta <br>"
+                        + "con las voladuras, disminuyendo con el tiempo</HTML>",
+                "<HTML>F. Infiltración o presión excepcionalmente alta <br>"
+                        + "en todo momento</HTML>"});
+        cbDescriptionJw.setBounds(30, 375, 250, 35);
+        
+        lbValueJw = new JLabel("Valor: ");
+        lbValueJw.setBounds(310, 380, 100, 20);
+        
+        lbDescriptionSRF = new JLabel("SRF");
+        lbDescriptionSRF.setBounds(25, 420, 80, 25);
+        lbDescriptionSRF.setFont(font);
+        
+        lbInstructions = new JLabel("<HTML>Para hacer este cálculo debe elegir <br>"
+                + "una de las tablas, si no las conoce, las puede ver en el <br>"
+                + "botón de abajo.</HTML>");
+        lbInstructions.setBounds(30, 450, 200, 80);
+        
+        btnTables = new JButton("Ver tablas");
+        btnTables.setBounds(30, 540, 100, 25);
+        btnTables.addActionListener(this);
+        
+        rbTable1 = new JRadioButton("Tabla 1");
+        rbTable1.setBounds(230, 450, 80, 20);
+        rbTable1.setSelected(true);
+        rbTable1.addActionListener(this);
+        
+        rbTable2 = new JRadioButton("Tabla 2");
+        rbTable2.setBounds(230, 480, 80, 20);
+        rbTable2.addActionListener(this);
+        
+        rbTable3 = new JRadioButton("Tabla 3");
+        rbTable3.setBounds(230, 510, 80, 20);
+        rbTable3.addActionListener(this);
+        groupTables = new ButtonGroup();
+        groupTables.add(rbTable1);
+        groupTables.add(rbTable2);
+        groupTables.add(rbTable3);
+        
+        cbSRF = new JComboBox(new Object[]{
+            "<HTML>A. Multiples zonas de debilidad que contengan arcilla o"
+            + "<br>&nbsp &nbsp &nbsp roca químicamente desintegrada, roca circundante"
+            + "<br>&nbsp &nbsp &nbsp muy suelta (Cualquier profundidad)</HTML>",
+            "<HTML>B. Zonas de debilidad aisladas que contengan arcill o"
+            + "<br>&nbsp &nbsp &nbsp roca químicamente desintegrada (Profundidad"
+            + "<br>&nbsp &nbsp &nbsp de excavación < 50m)</HTML>",
+            "<HTML>C. Zonas de debilidad aisladas que contengan arcilla o"
+            + "<br>&nbsp &nbsp &nbsp roca químicamente desintegrada (Profundidad de"
+            + "<br>&nbsp &nbsp &nbsp excavación > 50m)</HTML>",
+            "<HTML>D. Múltiples zonas de fractura de roca competente sin"
+            + "<br>&nbsp &nbsp &nbsp arcilla , roca circundante suelta, cualquier profundidad</HTML>",
+            "<HTML>E. Zonas de fracturas aisladas en roca competente sin"
+            + "<br>&nbsp &nbsp &nbsp arcilla, profundidad de excavación < 50m</HTML>",
+            "<HTML>F. Zonas de fracturas aisladas en roca competente sin"
+            + "<br>&nbsp &nbsp &nbsp arcilla, profundidad de excavación > 50m</HTML>",
+            "<HTML>G. Diaclasas abiertas sueltas, diaclasado intenso"
+            + "<br>&nbsp &nbsp &nbsp cualquier profundidad</HTML>"});
+        cbSRF.setBounds(320, 450, 340, 50);
+        
+        lbValueSRF = new JLabel("Valor: ");
+        lbValueSRF.setBounds(230, 510, 150, 25);
+        
     }
     
     public void addComponents(){
@@ -225,6 +312,17 @@ public class Cl_Q extends JDialog implements ActionListener{
         add(lbDescriptionJa);
         add(cbDescriptionJa);
         add(lbValueJa);
+        add(lbDescriptionJw);
+        add(cbDescriptionJw);
+        add(lbValueJw);
+        add(lbDescriptionSRF);
+        add(lbInstructions);
+        add(btnTables);
+        add(rbTable1);
+        add(rbTable2);
+        add(rbTable3);
+        add(cbSRF);
+        add(lbValueSRF);
     }
 
     @Override

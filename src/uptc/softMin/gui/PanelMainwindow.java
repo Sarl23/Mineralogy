@@ -58,7 +58,7 @@ public class PanelMainwindow extends JPanel {
         clModern.setForeground(Color.BLACK);
         clModern.setFont(new Font("mi font", Font.BOLD, 12));
 
-        clScala = new JButton("Clasificaciones Escalonadas");
+        clScala = new JButton("Clasificaciones Excavabilidad");
         clScala.setBounds(460, 330, 200, 30);
         clScala.setActionCommand(HandlingEvents.clSCALAB);
         clScala.addActionListener(mainWindow.getHandlingEvents());
