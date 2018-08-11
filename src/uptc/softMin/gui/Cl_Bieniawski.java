@@ -68,6 +68,12 @@ public class Cl_Bieniawski extends JDialog implements ActionListener {
     private JLabel lbC_Classification;
     private JLabel lbTitleC;
     private JTextField txScore;
+    private JLabel lbResulC;
+    
+    //Inicia el apartado D
+    private JLabel lbD_Classification;
+    
+    
     
 
     public Cl_Bieniawski(MainWindow mainWindow) {
@@ -168,7 +174,6 @@ public class Cl_Bieniawski extends JDialog implements ActionListener {
         cbG_Conditions = new JComboBox(new Object[] {"Completamente seco", "Húmendo", "Mojado", 
         "Goteo", "Flujo"});
         cbG_Conditions.setBounds(170 ,380, 150  , 20);
-        
         //Finaliza componentes de A
         
         
@@ -192,6 +197,13 @@ public class Cl_Bieniawski extends JDialog implements ActionListener {
         lbC_Classification.setFont(new Font("mi font", Font.BOLD, 18));
         
         lbTitleC = new JLabel("Puntaje");
+        lbTitleC.setBounds(20, 540, 100, 20);
+        txScore = new JTextField();
+        txScore.setBounds(100, 540, 50, 20);
+        lbResulC =  new JLabel("Aca resultado");
+        lbResulC.setBounds(180, 540, 100, 20);
+        
+        
         
         
     }
@@ -234,6 +246,9 @@ public class Cl_Bieniawski extends JDialog implements ActionListener {
         
         //Añade componentes de C
         mypanel.add(lbC_Classification);
+        mypanel.add(lbTitleC);
+        mypanel.add(txScore);
+        mypanel.add(lbResulC);
         
         
         
