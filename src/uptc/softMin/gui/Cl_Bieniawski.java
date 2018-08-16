@@ -252,10 +252,12 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         lbLength_E.setBounds(20, 730, 150, 20);
         txlength_E = new JTextField();
         txlength_E.setBounds(180, 730, 50, 20);
+        txlength_E.addKeyListener(this);
         lbSeparation_E = new JLabel("Separación (abertura)");
         lbSeparation_E.setBounds(20, 750, 150, 20);
         txSeparation_E = new JTextField();
         txSeparation_E.setBounds(180, 750, 50, 20);
+        txSeparation_E.addKeyListener(this);
         lbRugosity_E = new JLabel("Rugosidad");
         lbRugosity_E.setBounds(20, 770, 100, 20);
         cbRugosity_E = new JComboBox(new Object[]{"Muy Rugosa", "Rugosa", "Ligeramente Rugosa",
@@ -371,10 +373,14 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
             txRDQ.setText(mainWindow.getClDeere().getLbResult().getText().substring(5));
         }
         if (e.getSource() == btnCalculate1) {
-            if (rbSpotCharge.isSelected() && txSpotCharge.getText().length() > 0) {
+            if (rbSpotCharge.isSelected() && txSpotCharge.getText().length() > 0 && txCompression.getText().length()==0) {
+                System.out.println("voy al metodo con txSpotcharge");
+                txCompression.setText("0");
                 goCalculateModern();
             }
-            if (rblCompression.isSelected() && txCompression.getText().length() > 0) {
+            if (rblCompression.isSelected() && txCompression.getText().length() > 0 && txSpotCharge.getText().length()==0) {
+                System.out.println("voy al metodo con txCompression");
+                txSpotCharge.setText("0");
                 goCalculateModern();
             }
         }
@@ -385,14 +391,11 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
 
     private void goCalculateModern() {
         int condition4 = 0;
-
         double spotCharge = Double.parseDouble(txSpotCharge.getText());
         double compression = Double.parseDouble(txCompression.getText());
         double rqd = Double.parseDouble(txRDQ.getText());
-        double discontinuity = Double.parseDouble(txDiscontinuity.getSelectedText());
-        double flow = Double.parseDouble(txFlow.getText());
-        double watherPresu = Double.parseDouble(txWaterPressure.getText());
-
+        double discontinuity = Double.parseDouble(txDiscontinuity.getText());
+        
         if (rbS_Rough.isSelected()) {
             condition4 = 30;
         }
@@ -408,6 +411,15 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         if (rbFilling.isSelected()) {
             condition4 = 0;
         }
+        double flow = Double.parseDouble(txFlow.getText());
+        double watherPresu = Double.parseDouble(txWaterPressure.getText());
+        
+          System.out.println("llegue al metodo con:\n"+txSpotCharge.getText()+
+                "\n"+txCompression.getText()+
+                "\n"+txRDQ.getText()+
+                "\n"+txDiscontinuity.getSelectedText()+
+                "\n"+txFlow.getText()+
+                "\n"+txWaterPressure.getText());
 
         mainWindow.getManagementModern().calculateA1(spotCharge, compression);
         mainWindow.getManagementModern().calculateA2(rqd);
@@ -454,6 +466,18 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         }
         if (ev.getSource() == txFlow) {
             if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txFlow.getText().contains("."))) {
+                getToolkit().beep();
+                ev.consume();
+            }
+        }
+        if(ev.getSource() == txlength_E){
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txlength_E.getText().contains("."))) {
+                getToolkit().beep();
+                ev.consume();
+            }
+        }
+        if(ev.getSource()==txSeparation_E){
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txSeparation_E.getText().contains("."))) {
                 getToolkit().beep();
                 ev.consume();
             }
