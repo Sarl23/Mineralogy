@@ -298,8 +298,7 @@ public class Cl_RSR extends JDialog implements ActionListener, KeyListener{
             }
         }
         if(e.getSource() == btnHelpRSR){
-            helpPdfRSR();
-            
+            helpPdfRSR();            
         }
     }
     
