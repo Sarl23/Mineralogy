@@ -43,6 +43,7 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
     private JTextField txRDQ;
     private JButton btnRQD;
     private JLabel lbDiscontinuity;
+    private JLabel lbOnlymts;
     private JTextField txDiscontinuity;
     private JLabel lbContinuity;
     private JRadioButton rbS_Rough; //super rugosa
@@ -155,6 +156,8 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
 
         lbDiscontinuity = new JLabel("3. Espacio de las discontinuidades");
         lbDiscontinuity.setBounds(20, 140, 250, 20);
+        lbOnlymts = new JLabel("Metros (1 m = 1000 mm)");
+        lbOnlymts.setBounds(290, 140, 150, 20);
         txDiscontinuity = new JTextField("");
         txDiscontinuity.setBounds(220, 140, 50, 20);
         txDiscontinuity.addKeyListener(this);
@@ -299,6 +302,7 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         mypanel.add(txRDQ);
         mypanel.add(btnRQD);
         mypanel.add(lbDiscontinuity);
+        mypanel.add(lbOnlymts);
         mypanel.add(txDiscontinuity);
         mypanel.add(lbContinuity);
         mypanel.add(rbS_Rough);
@@ -373,20 +377,17 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
             txRDQ.setText(mainWindow.getClDeere().getLbResult().getText().substring(5));
         }
         if (e.getSource() == btnCalculate1) {
-            if (rbSpotCharge.isSelected() && txSpotCharge.getText().length() > 0 && txCompression.getText().length()==0) {
-                System.out.println("voy al metodo con txSpotcharge");
+            if (rbSpotCharge.isSelected() && txSpotCharge.getText().length() > 0 && txCompression.getText().length() == 0) {
                 txCompression.setText("0");
                 goCalculateModern();
             }
-            if (rblCompression.isSelected() && txCompression.getText().length() > 0 && txSpotCharge.getText().length()==0) {
-                System.out.println("voy al metodo con txCompression");
+            if (rblCompression.isSelected() && txCompression.getText().length() > 0 && txSpotCharge.getText().length() == 0) {
                 txSpotCharge.setText("0");
                 goCalculateModern();
             }
         }
 
         //arreglar la logica de elecion de a 1 
-        
     }
 
     private void goCalculateModern() {
@@ -395,7 +396,7 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         double compression = Double.parseDouble(txCompression.getText());
         double rqd = Double.parseDouble(txRDQ.getText());
         double discontinuity = Double.parseDouble(txDiscontinuity.getText());
-        
+
         if (rbS_Rough.isSelected()) {
             condition4 = 30;
         }
@@ -413,20 +414,16 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         }
         double flow = Double.parseDouble(txFlow.getText());
         double watherPresu = Double.parseDouble(txWaterPressure.getText());
-        
-          System.out.println("llegue al metodo con:\n"+txSpotCharge.getText()+
-                "\n"+txCompression.getText()+
-                "\n"+txRDQ.getText()+
-                "\n"+txDiscontinuity.getSelectedText()+
-                "\n"+txFlow.getText()+
-                "\n"+txWaterPressure.getText());
-
+        mainWindow.getManagementModern().calculateSum_A(mainWindow.getManagementModern().calculateA1(spotCharge, compression),
+                mainWindow.getManagementModern().calculateA2(rqd), mainWindow.getManagementModern().calculateA3(discontinuity), mainWindow.getManagementModern().calculateA4(condition4),
+                mainWindow.getManagementModern().calculateA5(flow, watherPresu, cbG_Conditions.getSelectedIndex()));
+        /*
         mainWindow.getManagementModern().calculateA1(spotCharge, compression);
         mainWindow.getManagementModern().calculateA2(rqd);
         mainWindow.getManagementModern().calculateA3(discontinuity);
         mainWindow.getManagementModern().calculateA4(condition4);
         mainWindow.getManagementModern().calculateA5(flow, watherPresu, cbG_Conditions.getSelectedIndex());
-
+         */
     }
 
     @Override
@@ -470,13 +467,13 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
                 ev.consume();
             }
         }
-        if(ev.getSource() == txlength_E){
+        if (ev.getSource() == txlength_E) {
             if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txlength_E.getText().contains("."))) {
                 getToolkit().beep();
                 ev.consume();
             }
         }
-        if(ev.getSource()==txSeparation_E){
+        if (ev.getSource() == txSeparation_E) {
             if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txSeparation_E.getText().contains("."))) {
                 getToolkit().beep();
                 ev.consume();
