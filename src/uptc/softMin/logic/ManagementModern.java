@@ -12,7 +12,7 @@ package uptc.softMin.logic;
 public class ManagementModern {
 
     private int[] vet5c = {15, 10, 7, 4, 0};
-    private int[][] matB = {};
+    private int[][] matB = {{0, 2, 5, 10, 12}, {0, 2, 7, 15, 25}, {0, 5, 25, 50, 60}};
 
     public ManagementModern() {
 
@@ -127,17 +127,78 @@ public class ManagementModern {
     }
 
     public double calculateSum_A(double point1, double point2, double point3, double point4, double point5c) {
-
-        System.out.println("llegue a suma con "
-                + "\n1: " + point1
-                + "\n2: " + point2
-                + "\n3: " + point3
-                + "\n4: " + point4
-                + "\n5: " + point5c);
         double sum = 0;
         sum = point1 + point2 + point3 + point4 + point5c;
-
         return sum;
+    }
+
+    public double calculate_B(int indexROW, int indexCOLUMN) {
+        int rest = matB[indexROW][indexCOLUMN];
+        return rest;
+    }
+
+    public String calulate_C(double sumA, double restB) {
+        double result = sumA - restB;
+        String rta = "";
+
+        if (result <= 100 && result >= 81) {
+            rta = "Puntaje: " + result + "--- Tipo de Roca: I --- Descripción: Muy Buena";
+        } else if (result <= 80 && result >= 61) {
+            rta = "Puntaje: " + result + "--- Tipo de Roca: II --- Descripción: Buena";
+
+        } else if (result <= 60 && result >= 41) {
+            rta = "Puntaje: " + result + "--- Tipo de Roca: III --- Descripción: Regular";
+
+        } else if (result <= 40 && result >= 21) {
+            rta = "Puntaje: " + result + "--- Tipo de Roca: IV --- Descripción: Mala";
+
+        } else if (result <= 20) {
+            rta = "Puntaje: " + result + "--- Tipo de Roca: V --- Descripción: Muy Mala";
+
+        }
+
+        return "°- " + rta;
+    }
+
+    public String calculate_D(double sumA, double restB) {
+        double result = sumA - restB;
+        String answ="";
+        if (result <= 100 && result >= 81) {
+            //Tipo de roca 1
+            answ = "<HTML>Tipo de Roca: I<br>"
+                    + "Tiempo medio de sostén: 20 años, claro de 15m <br>"
+                    + "Cohesión del macizo rocoso (KPa): > 400 <br>"
+                    + "Ángulo de fricción del macizo rocoso (°): > 45°.</HTML>";
+        } else if (result <= 80 && result >= 61) {
+            //Tipo de roca 2
+            answ = "<HTML>Tipo de Roca: II<br>"
+                    + "Tiempo medio de sostén: 1 año claro de 10m <br>"
+                    + "Cohesión del macizo rocoso (KPa):300 a 400 <br>"
+                    + "Ángulo de fricción del macizo rocoso (°): 30° a 45°.</HTML>";
+
+        } else if (result <= 60 && result >= 41) {
+            //Tipo de roca 3
+            answ = "<HTML>Tipo de Roca: III<br>"
+                    + "Tiempo medio de sostén: 1 semana, claro de 5m <br>"
+                    + "Cohesión del macizo rocoso (KPa): > 100 a 300 <br>"
+                    + "Ángulo de fricción del macizo rocoso (°): > 25° a 35°.</HTML>";
+
+        } else if (result <= 40 && result >= 21) {
+            //Tipo de roca 4
+            answ = "<HTML>Tipo de Roca: IV<br>"
+                    + "Tiempo medio de sostén: 10 horas, claro 2.5m <br>"
+                    + "Cohesión del macizo rocoso (KPa): > 100 a 200 <br>"
+                    + "Angulo de fricción del macizo rocoso (°): > 15° a 25°.</HTML>";
+
+        } else if (result <= 20) {
+            //Tipo de roca 5
+             answ = "<HTML>Tipo de Roca: V<br>"
+                    + "Tiempo medio de sostén: 30min, claro de 1m <br>"
+                    + "Cohesión del macizo rocoso (KPa): < 100 <br>"
+                    + "Angulo de fricción del macizo rocoso (°): < 15°.</HTML>";
+
+        }
+        return answ;
     }
 
 }
