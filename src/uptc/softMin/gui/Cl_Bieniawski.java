@@ -87,6 +87,8 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
     private JComboBox cbFilling_E;
     private JLabel lbWeathering_E;
     private JComboBox cbWeathering_E;
+    private JRadioButton rbResult_E;
+
     //inicia el apartado F
     private JLabel lbF_Classification;
     private JLabel lbimageF;
@@ -249,10 +251,10 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         txlength_E = new JTextField();
         txlength_E.setBounds(180, 730, 50, 20);
         txlength_E.addKeyListener(this);
-        lbSeparation_E = new JLabel("Separación (abertura)");
-        lbSeparation_E.setBounds(20, 750, 150, 20);
+        lbSeparation_E = new JLabel("Separación(abertura-en Metros)");
+        lbSeparation_E.setBounds(20, 750, 200, 20);
         txSeparation_E = new JTextField();
-        txSeparation_E.setBounds(180, 750, 50, 20);
+        txSeparation_E.setBounds(220, 750, 50, 20);
         txSeparation_E.addKeyListener(this);
         lbRugosity_E = new JLabel("Rugosidad");
         lbRugosity_E.setBounds(20, 770, 100, 20);
@@ -269,6 +271,10 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         cbWeathering_E = new JComboBox(new Object[]{"Inalterada", "Ligeramente Meteorizada", "Moderadamente Meteorizada",
             "Altamente Meteorizada", "Descompuesta"});
         cbWeathering_E.setBounds(180, 810, 210, 20);
+
+        rbResult_E = new JRadioButton("PUNTAJE:");
+        rbResult_E.setBounds(430, 770, 150, 20);
+        rbResult_E.addActionListener(this);
 
         //Inicia componenets de F
         lbF_Classification = new JLabel("F. Efecto de la orientación del rumbo y buzamiento de las discontinuidades en los túneles.");
@@ -339,6 +345,7 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         mypanel.add(cbFilling_E);
         mypanel.add(lbWeathering_E);
         mypanel.add(cbWeathering_E);
+        mypanel.add(rbResult_E);
 
         //Añade Componentes F
         mypanel.add(lbF_Classification);
@@ -378,11 +385,17 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         if (e.getSource() == btnHelpBieni) {
             helpDialogPDF();
         }
+        if (e.getSource() == rbResult_E) {
+            if(rbResult_E.isSelected()){
+            calulateOnlyE();    
+            }
+            
+        }
 
     }
 
     private void helpDialogPDF() {
-        
+
         //Metodo que abre el pdf de ayuda
         try {
             File path = new File("resours/Files/ayudaRMR.pdf");
@@ -433,6 +446,13 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         lbTip_rock.setText(mainWindow.getManagementModern().calculate_D(sumA, restB));
 
         cleanFields();
+    }
+
+    public void calulateOnlyE() {
+        //Inicia calculos apartado E
+        double lengh_E = Double.parseDouble(txlength_E.getText());
+        String separation = txSeparation_E.getText();
+        rbResult_E.setText("Puntaje: "+ mainWindow.getManagementModern().calculate_E(lengh_E, separation, cbRugosity_E.getSelectedIndex(), cbFilling_E.getSelectedIndex(), cbWeathering_E.getSelectedIndex()));
     }
 
     @Override

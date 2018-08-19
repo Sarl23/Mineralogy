@@ -13,6 +13,7 @@ public class ManagementModern {
 
     private int[] vet5c = {15, 10, 7, 4, 0};
     private int[][] matB = {{0, 2, 5, 10, 12}, {0, 2, 7, 15, 25}, {0, 5, 25, 50, 60}};
+    private int[][] matE = {{6, 5, 3, 1, 0}, {6, 4, 2, 2, 0}, {6, 5, 3, 1, 0}};
 
     public ManagementModern() {
 
@@ -162,7 +163,7 @@ public class ManagementModern {
 
     public String calculate_D(double sumA, double restB) {
         double result = sumA - restB;
-        String answ="";
+        String answ = "";
         if (result <= 100 && result >= 81) {
             //Tipo de roca 1
             answ = "<HTML>Tipo de Roca: I<br>"
@@ -173,7 +174,7 @@ public class ManagementModern {
             //Tipo de roca 2
             answ = "<HTML>Tipo de Roca: II<br>"
                     + "Tiempo medio de sostén: 1 año claro de 10m <br>"
-                    + "Cohesión del macizo rocoso (KPa):300 a 400 <br>"
+                    + "Cohesión del macizo rocoso (KPa): 300 a 400 <br>"
                     + "Ángulo de fricción del macizo rocoso (°): 30° a 45°.</HTML>";
 
         } else if (result <= 60 && result >= 41) {
@@ -192,13 +193,66 @@ public class ManagementModern {
 
         } else if (result <= 20) {
             //Tipo de roca 5
-             answ = "<HTML>Tipo de Roca: V<br>"
+            answ = "<HTML>Tipo de Roca: V<br>"
                     + "Tiempo medio de sostén: 30min, claro de 1m <br>"
                     + "Cohesión del macizo rocoso (KPa): < 100 <br>"
                     + "Angulo de fricción del macizo rocoso (°): < 15°.</HTML>";
 
         }
         return answ;
+    }
+
+    public int calculate_E(double lenght, String separation, int indexR, int indexF, int indexW) {
+        System.out.println("llegue al metodo logica");
+        int point6 = 0;
+        int point7 = 0;
+
+        System.out.println("llega: "
+                + "\n" + lenght
+                + "\n" + separation
+                + "\n" + indexR
+                + "\n" + indexF
+                + "\n" + indexW
+        );
+
+        if (lenght <= 1) {
+            point6 = 6;
+        } else if (lenght > 1 && lenght <= 3) {
+            point6 = 4;
+        } else if (lenght > 3 && lenght <= 10) {
+            point6 = 2;
+        } else if (lenght > 10 && lenght <= 20) {
+            point6 = 1;
+        } else if (lenght > 20) {
+            point6 = 0;
+        }
+        if (separation.isEmpty()) {
+            point7 = 6;
+        } else {
+            double separ = Double.parseDouble(separation);
+            if (separ <= 0.1) {
+                point7 = 5;
+            } else if (separ > 0.1 && separ <= 1.0) {
+                point7 = 3;
+            } else if (separ > 1 && separ <= 5) {
+                point7 = 1;
+            } else if (separ > 5) {
+                point7 = 1;
+            }
+        }
+
+        //matE = {{6, 5, 3, 1, 0}, {6, 4, 2, 2, 0}, {6, 5, 3, 1, 0}};
+        int point8 = matE[0][indexR];
+        int point9 = matE[1][indexF];
+        int point10 = matE[2][indexW];
+        int result = point6 + point7 + point8 + point9 + point10;
+
+        System.out.println("salio cb1:"+point8
+                + "\nsalio cb2: "+point9
+                + "\nsalio cb3: "+point10
+                + "\nsali con total " + result);
+        return result;
+
     }
 
 }
