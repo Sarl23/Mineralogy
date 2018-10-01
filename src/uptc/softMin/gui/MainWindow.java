@@ -7,6 +7,7 @@ package uptc.softMin.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import uptc.softMin.logic.ManagementModern;
 import uptc.softMin.logic.ManagementOld;
 
 public class MainWindow extends JFrame {
@@ -15,6 +16,7 @@ public class MainWindow extends JFrame {
     private Terms terms;
     private PanelMainwindow pnlMainwindow;
     private ManagementOld mgOld;
+    private ManagementModern mgModern;
     private WindowCLOLD winOld;
     private HandlingEvents handlingEvents;
     private CLOld_Terzaghi clOldTerzaghi;
@@ -49,6 +51,7 @@ public class MainWindow extends JFrame {
         pnlMainwindow = new PanelMainwindow(this);
         winOld = new WindowCLOLD(this);
         mgOld = new ManagementOld();
+        mgModern = new ManagementModern();
         clOldTerzaghi = new CLOld_Terzaghi(this);
         clDeere = new ClDeere(this);
         clRSR = new Cl_RSR(this);
@@ -93,6 +96,10 @@ public class MainWindow extends JFrame {
 
     public ManagementOld getManagementOld() {
         return mgOld;
+    }
+    
+    public ManagementModern getManagementModern(){
+        return mgModern;
     }
 
     public void goModern() {

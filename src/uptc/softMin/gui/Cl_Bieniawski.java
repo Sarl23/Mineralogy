@@ -11,6 +11,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -18,12 +20,13 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-public class Cl_Bieniawski extends JDialog implements ActionListener {
+public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListener {
 
     private MainWindow mainWindow;
     private JPanel mypanel;
@@ -65,6 +68,7 @@ public class Cl_Bieniawski extends JDialog implements ActionListener {
     private JLabel lbTitleC;
     private JLabel lbResulC;
     private JLabel lbResul1C;
+    private JButton btnCalculate1;
     //Inicia el apartado D
     private JLabel lbD_Classification;
     private JLabel lbTip_rock;
@@ -125,12 +129,16 @@ public class Cl_Bieniawski extends JDialog implements ActionListener {
         rbSpotCharge.addActionListener(this);
         txSpotCharge = new JTextField();
         txSpotCharge.setBounds(320, 54, 50, 20);
+        txSpotCharge.addKeyListener(this);
+        txSpotCharge.setEnabled(false);
 
         rblCompression = new JRadioButton("Resistencia a la compresión uniaxial  MPa");
         rblCompression.setBounds(20, 75, 300, 20);
         rblCompression.addActionListener(this);
         txCompression = new JTextField();
         txCompression.setBounds(320, 76, 50, 20);
+        txCompression.addKeyListener(this);
+        txCompression.setEnabled(false);
 
         btnGroup = new ButtonGroup();
         btnGroup.add(rbSpotCharge);
@@ -140,6 +148,7 @@ public class Cl_Bieniawski extends JDialog implements ActionListener {
         lbRQD.setBounds(20, 100, 50, 30);
         txRDQ = new JTextField("");
         txRDQ.setBounds(75, 105, 50, 20);
+        txRDQ.addKeyListener(this);
         btnRQD = new JButton("Calcular RQD");
         btnRQD.setBounds(160, 105, 110, 20);
         btnRQD.addActionListener(this);
@@ -148,6 +157,7 @@ public class Cl_Bieniawski extends JDialog implements ActionListener {
         lbDiscontinuity.setBounds(20, 140, 250, 20);
         txDiscontinuity = new JTextField("");
         txDiscontinuity.setBounds(220, 140, 50, 20);
+        txDiscontinuity.addKeyListener(this);
 
         lbContinuity = new JLabel("4. Condición de las discontinuidades(ver E)");
         lbContinuity.setBounds(20, 180, 280, 20);
@@ -175,10 +185,12 @@ public class Cl_Bieniawski extends JDialog implements ActionListener {
         lbFlow.setBounds(20, 340, 280, 20);
         txFlow = new JTextField("");
         txFlow.setBounds(280, 340, 50, 20);
+        txFlow.addKeyListener(this);
         lbWaterPressure = new JLabel("Presión de agua en la diac (Tensión principal mayor x1)");
         lbWaterPressure.setBounds(20, 360, 340, 20);
         txWaterPressure = new JTextField();
         txWaterPressure.setBounds(350, 360, 50, 20);
+        txWaterPressure.addKeyListener(this);
         lbG_Conditions = new JLabel("Condiciones generales");
         lbG_Conditions.setBounds(20, 380, 160, 20);
         cbG_Conditions = new JComboBox(new Object[]{"Completamente seco", "Húmendo", "Mojado",
@@ -187,16 +199,20 @@ public class Cl_Bieniawski extends JDialog implements ActionListener {
 
         //Inicia Componentes de B
         lbB_Classification = new JLabel("B. Ajuste la orientación de las discontinuidades");
-        lbB_Classification.setBounds(20, 420, 550, 30);
+        lbB_Classification.setBounds(20, 400, 550, 30);
         lbB_Classification.setForeground(Color.BLACK);
         lbB_Classification.setFont(new Font("mi font", Font.BOLD, 18));
         //los jCombobox con mattriz
         lbTitleB = new JLabel("Orientación de rumbo y  buzamiento");
-        lbTitleB.setBounds(20, 460, 250, 20);
+        lbTitleB.setBounds(20, 440, 250, 20);
         cbRow = new JComboBox(new Object[]{"Túneles y Minas", "Cimentaciones", "Taludes"});
-        cbRow.setBounds(240, 460, 150, 20);
+        cbRow.setBounds(240, 430, 150, 20);
         cbColum = new JComboBox(new Object[]{"Muy Favorable", "Favorable", "Regular ", "Desfavorable", "Muy desfavorable"});
-        cbColum.setBounds(410, 460, 150, 20);
+        cbColum.setBounds(240, 460, 150, 20);
+
+        btnCalculate1 = new JButton("Calcular");
+        btnCalculate1.setBounds(450, 440, 100, 30);
+        btnCalculate1.addActionListener(this);
 
         //Inicia Componentes de C
         lbC_Classification = new JLabel("C. Tipos de macizos rocosos determinados a partir de la valuación total");
@@ -262,10 +278,8 @@ public class Cl_Bieniawski extends JDialog implements ActionListener {
         lbF_Classification.setForeground(Color.BLACK);
         lbF_Classification.setFont(new Font("mi font", Font.BOLD, 18));
         lbimageF = new JLabel(new ImageIcon("resours/images/CaptureF.png"));
-        lbimageF.setBounds(2, 870,750 ,200 );
-        
-        
-        
+        lbimageF.setBounds(2, 870, 750, 200);
+
     }
 
     private void addComponents() {
@@ -303,6 +317,7 @@ public class Cl_Bieniawski extends JDialog implements ActionListener {
         mypanel.add(lbTitleB);
         mypanel.add(cbRow);
         mypanel.add(cbColum);
+        mypanel.add(btnCalculate1);
 
         //Añade componentes de C
         mypanel.add(lbC_Classification);
@@ -333,13 +348,14 @@ public class Cl_Bieniawski extends JDialog implements ActionListener {
         //Añade Componentes F
         mypanel.add(lbF_Classification);
         mypanel.add(lbimageF);
-        
+
         add(scroll);
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if (e.getSource() == rbSpotCharge) {
             txSpotCharge.setEnabled(true);
             txSpotCharge.setText("");
@@ -354,6 +370,104 @@ public class Cl_Bieniawski extends JDialog implements ActionListener {
             mainWindow.goClDeere();
             txRDQ.setText(mainWindow.getClDeere().getLbResult().getText().substring(5));
         }
+        if (e.getSource() == btnCalculate1) {
+            if (rbSpotCharge.isSelected() && txSpotCharge.getText().length() > 0) {
+                goCalculateModern();
+            }
+            if (rblCompression.isSelected() && txCompression.getText().length() > 0) {
+                goCalculateModern();
+            }
+        }
+
+        //arreglar la logica de elecion de a 1 
+        
+    }
+
+    private void goCalculateModern() {
+        int condition4 = 0;
+
+        double spotCharge = Double.parseDouble(txSpotCharge.getText());
+        double compression = Double.parseDouble(txCompression.getText());
+        double rqd = Double.parseDouble(txRDQ.getText());
+        double discontinuity = Double.parseDouble(txDiscontinuity.getSelectedText());
+        double flow = Double.parseDouble(txFlow.getText());
+        double watherPresu = Double.parseDouble(txWaterPressure.getText());
+
+        if (rbS_Rough.isSelected()) {
+            condition4 = 30;
+        }
+        if (rbL_Rough.isSelected()) {
+            condition4 = 25;
+        }
+        if (rbL_RoughSeparation.isSelected()) {
+            condition4 = 20;
+        }
+        if (rbSurface_Polished.isSelected()) {
+            condition4 = 10;
+        }
+        if (rbFilling.isSelected()) {
+            condition4 = 0;
+        }
+
+        mainWindow.getManagementModern().calculateA1(spotCharge, compression);
+        mainWindow.getManagementModern().calculateA2(rqd);
+        mainWindow.getManagementModern().calculateA3(discontinuity);
+        mainWindow.getManagementModern().calculateA4(condition4);
+        mainWindow.getManagementModern().calculateA5(flow, watherPresu, cbG_Conditions.getSelectedIndex());
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent ev) {
+        char pla = ev.getKeyChar();
+
+        if (ev.getSource() == txSpotCharge) {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txSpotCharge.getText().contains("."))) {
+                getToolkit().beep();
+                ev.consume();
+            }
+        }
+        if (ev.getSource() == txCompression) {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txCompression.getText().contains("."))) {
+                getToolkit().beep();
+                ev.consume();
+            }
+
+        }
+        if (ev.getSource() == txRDQ) {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txRDQ.getText().contains("."))) {
+                getToolkit().beep();
+                ev.consume();
+            }
+        }
+        if (ev.getSource() == txDiscontinuity) {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txDiscontinuity.getText().contains("."))) {
+                getToolkit().beep();
+                ev.consume();
+            }
+        }
+        if (ev.getSource() == txWaterPressure) {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txWaterPressure.getText().contains("."))) {
+                getToolkit().beep();
+                ev.consume();
+            }
+        }
+        if (ev.getSource() == txFlow) {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txFlow.getText().contains("."))) {
+                getToolkit().beep();
+                ev.consume();
+            }
+        }
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent ev) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ev) {
 
     }
 

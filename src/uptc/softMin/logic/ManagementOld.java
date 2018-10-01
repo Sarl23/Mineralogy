@@ -2,6 +2,7 @@ package uptc.softMin.logic;
 /**
  *
  * @author Sergio Rojas y Jimmy Plazas
+ * terminacion de codigo logica para terminar clases de clasification
  */
 public class ManagementOld {
     
