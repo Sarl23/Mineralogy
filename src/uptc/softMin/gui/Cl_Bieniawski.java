@@ -6,6 +6,7 @@
 package uptc.softMin.gui;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
@@ -13,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -43,6 +46,7 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
     private JTextField txRDQ;
     private JButton btnRQD;
     private JLabel lbDiscontinuity;
+    private JLabel lbOnlymts;
     private JTextField txDiscontinuity;
     private JLabel lbContinuity;
     private JRadioButton rbS_Rough; //super rugosa
@@ -66,15 +70,11 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
     //Inicia apartado C
     private JLabel lbC_Classification;
     private JLabel lbTitleC;
-    private JLabel lbResulC;
-    private JLabel lbResul1C;
     private JButton btnCalculate1;
+    private JButton btnHelpBieni;
     //Inicia el apartado D
     private JLabel lbD_Classification;
     private JLabel lbTip_rock;
-    private JLabel lbTime_suppport;
-    private JLabel lbKpa_cohe;
-    private JLabel lbFriction_Angle;
     //Inicia el apartado E
     private JLabel lbE_Classification;
     private JLabel lbLength_E;
@@ -87,6 +87,8 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
     private JComboBox cbFilling_E;
     private JLabel lbWeathering_E;
     private JComboBox cbWeathering_E;
+    private JRadioButton rbResult_E;
+
     //inicia el apartado F
     private JLabel lbF_Classification;
     private JLabel lbimageF;
@@ -155,6 +157,8 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
 
         lbDiscontinuity = new JLabel("3. Espacio de las discontinuidades");
         lbDiscontinuity.setBounds(20, 140, 250, 20);
+        lbOnlymts = new JLabel("EN METROS (1 mt = 1000 mm)");
+        lbOnlymts.setBounds(290, 140, 190, 20);
         txDiscontinuity = new JTextField("");
         txDiscontinuity.setBounds(220, 140, 50, 20);
         txDiscontinuity.addKeyListener(this);
@@ -214,18 +218,18 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         btnCalculate1.setBounds(450, 440, 100, 30);
         btnCalculate1.addActionListener(this);
 
+        btnHelpBieni = new JButton("Ayuda");
+        btnHelpBieni.setBounds(555, 440, 100, 30);
+        btnHelpBieni.addActionListener(this);
+
         //Inicia Componentes de C
         lbC_Classification = new JLabel("C. Tipos de macizos rocosos determinados a partir de la valuación total");
         lbC_Classification.setBounds(20, 500, 680, 30);
         lbC_Classification.setForeground(Color.BLACK);
         lbC_Classification.setFont(new Font("mi font", Font.BOLD, 18));
-
-        lbTitleC = new JLabel("Puntaje");
-        lbTitleC.setBounds(20, 540, 100, 20);
-        lbResulC = new JLabel("RTA Tipo Roca");
-        lbResulC.setBounds(110, 540, 100, 20);
-        lbResul1C = new JLabel("Rta descripc");
-        lbResul1C.setBounds(220, 540, 100, 20);
+        //
+        lbTitleC = new JLabel("PUNTAJE");
+        lbTitleC.setBounds(20, 540, 600, 20);
 
         //Inicia componentes de D
         lbD_Classification = new JLabel("D. Significado de los tipos de roca");
@@ -233,14 +237,8 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         lbD_Classification.setForeground(Color.BLACK);
         lbD_Classification.setFont(new Font("mi font", Font.BOLD, 18));
 
-        lbTip_rock = new JLabel("Tipo de Roca");
-        lbTip_rock.setBounds(20, 610, 100, 20);
-        lbTime_suppport = new JLabel("Tiempo medio de sostén");
-        lbTime_suppport.setBounds(20, 630, 180, 20);
-        lbKpa_cohe = new JLabel("Cohesión del macizo rocoso KPa ");
-        lbKpa_cohe.setBounds(20, 650, 220, 20);
-        lbFriction_Angle = new JLabel("Angulo de fricción del macizo rocoso º ");
-        lbFriction_Angle.setBounds(20, 670, 220, 20);
+        lbTip_rock = new JLabel("TIPO DE ROCA");
+        lbTip_rock.setBounds(20, 610, 300, 60);
 
         //inicia componentes de E
         lbE_Classification = new JLabel("E. Guías para la clasificación según las condiciones de las discontinuidades.");
@@ -252,10 +250,12 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         lbLength_E.setBounds(20, 730, 150, 20);
         txlength_E = new JTextField();
         txlength_E.setBounds(180, 730, 50, 20);
-        lbSeparation_E = new JLabel("Separación (abertura)");
-        lbSeparation_E.setBounds(20, 750, 150, 20);
+        txlength_E.addKeyListener(this);
+        lbSeparation_E = new JLabel("Separación(abertura-en Metros)");
+        lbSeparation_E.setBounds(20, 750, 200, 20);
         txSeparation_E = new JTextField();
-        txSeparation_E.setBounds(180, 750, 50, 20);
+        txSeparation_E.setBounds(220, 750, 50, 20);
+        txSeparation_E.addKeyListener(this);
         lbRugosity_E = new JLabel("Rugosidad");
         lbRugosity_E.setBounds(20, 770, 100, 20);
         cbRugosity_E = new JComboBox(new Object[]{"Muy Rugosa", "Rugosa", "Ligeramente Rugosa",
@@ -271,6 +271,10 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         cbWeathering_E = new JComboBox(new Object[]{"Inalterada", "Ligeramente Meteorizada", "Moderadamente Meteorizada",
             "Altamente Meteorizada", "Descompuesta"});
         cbWeathering_E.setBounds(180, 810, 210, 20);
+
+        rbResult_E = new JRadioButton("PUNTAJE:");
+        rbResult_E.setBounds(430, 770, 150, 20);
+        rbResult_E.addActionListener(this);
 
         //Inicia componenets de F
         lbF_Classification = new JLabel("F. Efecto de la orientación del rumbo y buzamiento de las discontinuidades en los túneles.");
@@ -297,6 +301,7 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         mypanel.add(txRDQ);
         mypanel.add(btnRQD);
         mypanel.add(lbDiscontinuity);
+        mypanel.add(lbOnlymts);
         mypanel.add(txDiscontinuity);
         mypanel.add(lbContinuity);
         mypanel.add(rbS_Rough);
@@ -318,19 +323,15 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         mypanel.add(cbRow);
         mypanel.add(cbColum);
         mypanel.add(btnCalculate1);
+        mypanel.add(btnHelpBieni);
 
         //Añade componentes de C
         mypanel.add(lbC_Classification);
         mypanel.add(lbTitleC);
-        mypanel.add(lbResulC);
-        mypanel.add(lbResul1C);
 
         //Añade componentes D
         mypanel.add(lbD_Classification);
         mypanel.add(lbTip_rock);
-        mypanel.add(lbTime_suppport);
-        mypanel.add(lbKpa_cohe);
-        mypanel.add(lbFriction_Angle);
 
         //Añade componentes E
         mypanel.add(lbE_Classification);
@@ -344,6 +345,7 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         mypanel.add(cbFilling_E);
         mypanel.add(lbWeathering_E);
         mypanel.add(cbWeathering_E);
+        mypanel.add(rbResult_E);
 
         //Añade Componentes F
         mypanel.add(lbF_Classification);
@@ -371,10 +373,13 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
             txRDQ.setText(mainWindow.getClDeere().getLbResult().getText().substring(5));
         }
         if (e.getSource() == btnCalculate1) {
-            if (rbSpotCharge.isSelected() && txSpotCharge.getText().length() > 0) {
+
+            if (rbSpotCharge.isSelected() && txSpotCharge.getText().length() > 0 && txCompression.getText().length() == 0) {
+                txCompression.setText("0");
                 goCalculateModern();
             }
-            if (rblCompression.isSelected() && txCompression.getText().length() > 0) {
+           if (rblCompression.isSelected() && txCompression.getText().length() > 0 && txSpotCharge.getText().length() == 0) {
+                txSpotCharge.setText("0");
                 goCalculateModern();
             }
         }
@@ -383,15 +388,14 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         
     }
 
+     //Mando a managementModern para calcular la logica
     private void goCalculateModern() {
+        //Inicia calculos apartado A
         int condition4 = 0;
-
         double spotCharge = Double.parseDouble(txSpotCharge.getText());
         double compression = Double.parseDouble(txCompression.getText());
         double rqd = Double.parseDouble(txRDQ.getText());
-        double discontinuity = Double.parseDouble(txDiscontinuity.getSelectedText());
-        double flow = Double.parseDouble(txFlow.getText());
-        double watherPresu = Double.parseDouble(txWaterPressure.getText());
+        double discontinuity = Double.parseDouble(txDiscontinuity.getText());
 
         if (rbS_Rough.isSelected()) {
             condition4 = 30;
@@ -408,13 +412,29 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
         if (rbFilling.isSelected()) {
             condition4 = 0;
         }
+        double flow = Double.parseDouble(txFlow.getText());
+        double watherPresu = Double.parseDouble(txWaterPressure.getText());
+        double sumA = mainWindow.getManagementModern().calculateSum_A(mainWindow.getManagementModern().calculateA1(spotCharge, compression),
+                mainWindow.getManagementModern().calculateA2(rqd), mainWindow.getManagementModern().calculateA3(discontinuity), mainWindow.getManagementModern().calculateA4(condition4),
+                mainWindow.getManagementModern().calculateA5(flow, watherPresu, cbG_Conditions.getSelectedIndex()));
 
-        mainWindow.getManagementModern().calculateA1(spotCharge, compression);
-        mainWindow.getManagementModern().calculateA2(rqd);
-        mainWindow.getManagementModern().calculateA3(discontinuity);
-        mainWindow.getManagementModern().calculateA4(condition4);
-        mainWindow.getManagementModern().calculateA5(flow, watherPresu, cbG_Conditions.getSelectedIndex());
+        //Inicia calculos apartado C
+        int ColumnB = cbColum.getSelectedIndex();
+        int rowB = cbRow.getSelectedIndex();
+        double restB = mainWindow.getManagementModern().calculate_B(rowB, ColumnB);
+        lbTitleC.setText(mainWindow.getManagementModern().calulate_C(sumA, restB));
 
+        //Inicia calculos apartado D
+        lbTip_rock.setText(mainWindow.getManagementModern().calculate_D(sumA, restB));
+
+        cleanFields();
+    }
+
+    public void calulateOnlyE() {
+        //Inicia calculos apartado E
+        double lengh_E = Double.parseDouble(txlength_E.getText());
+        String separation = txSeparation_E.getText();
+        rbResult_E.setText("Puntaje: "+ mainWindow.getManagementModern().calculate_E(lengh_E, separation, cbRugosity_E.getSelectedIndex(), cbFilling_E.getSelectedIndex(), cbWeathering_E.getSelectedIndex()));
     }
 
     @Override
@@ -458,6 +478,18 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
                 ev.consume();
             }
         }
+        if (ev.getSource() == txlength_E) {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txlength_E.getText().contains("."))) {
+                getToolkit().beep();
+                ev.consume();
+            }
+        }
+        if (ev.getSource() == txSeparation_E) {
+            if (((pla < '0') || (pla > '9')) && (pla != KeyEvent.VK_BACK_SPACE) && (pla != '.' || txSeparation_E.getText().contains("."))) {
+                getToolkit().beep();
+                ev.consume();
+            }
+        }
 
     }
 
@@ -468,6 +500,18 @@ public class Cl_Bieniawski extends JDialog implements ActionListener, KeyListene
 
     @Override
     public void keyReleased(KeyEvent ev) {
+
+    }
+
+    private void cleanFields() {
+        txSpotCharge.setText("");
+        txCompression.setText("");
+        txRDQ.setText("");
+        txDiscontinuity.setText("");
+        txWaterPressure.setText("");
+        txFlow.setText("");
+        txlength_E.setText("");
+        txSeparation_E.setText("");
 
     }
 

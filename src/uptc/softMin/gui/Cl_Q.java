@@ -5,12 +5,15 @@
  */
 package uptc.softMin.gui;
 
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,18 +22,17 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
-
 /**
  *
  * @author Alejandro y Sergio
  */
-
 public class Cl_Q extends JDialog implements ActionListener{
  
     private MainWindow mainWin;
     private Font font;
     private JButton btnGetRQD;
     private JButton btnTables;
+    private JButton btnCalculate;
     //ComboBox
     private JComboBox cbDescriptionRQD;
     private JComboBox cbDescriptionJn;
@@ -214,7 +216,7 @@ public class Cl_Q extends JDialog implements ActionListener{
         lbValueJa.setBounds(250, 285, 80, 20);
         
         lbDescriptionJw = new JLabel("Factor de reducción por agua en las diaclasas");
-        lbDescriptionJw.setBounds(25, 350, 300, 20);
+        lbDescriptionJw.setBounds(25, 350, 350, 20);
         lbDescriptionJw.setFont(font);
         
         cbDescriptionJw = new JComboBox(new Object[]{
@@ -288,6 +290,10 @@ public class Cl_Q extends JDialog implements ActionListener{
         lbValueSRF = new JLabel("Valor: ");
         lbValueSRF.setBounds(230, 510, 150, 25);
         
+        btnCalculate = new JButton("Calcular");
+        btnCalculate.setBounds(150, 540, 100, 25);
+        btnCalculate.addActionListener(this);
+        
     }
     
     public void addComponents(){
@@ -323,6 +329,7 @@ public class Cl_Q extends JDialog implements ActionListener{
         add(rbTable3);
         add(cbSRF);
         add(lbValueSRF);
+        add(btnCalculate);
     }
 
     @Override
@@ -385,46 +392,167 @@ public class Cl_Q extends JDialog implements ActionListener{
             cbDescriptionJa.addItem(
                 "O. (véase G,H,I, para condiciones de arcilla)");
         }
+        
+        if(e.getSource() == rbTable1){
+            cbSRF.removeAllItems();
+            cbSRF.addItem(
+            "<HTML>A. Multiples zonas de debilidad que contengan arcilla o"
+            + "<br>&nbsp &nbsp &nbsp roca químicamente desintegrada, roca circundante"
+            + "<br>&nbsp &nbsp &nbsp muy suelta (Cualquier profundidad)</HTML>");
+            cbSRF.addItem(
+            "<HTML>B. Zonas de debilidad aisladas que contengan arcill o"
+            + "<br>&nbsp &nbsp &nbsp roca químicamente desintegrada (Profundidad"
+            + "<br>&nbsp &nbsp &nbsp de excavación < 50m)</HTML>");
+            cbSRF.addItem(
+            "<HTML>C. Zonas de debilidad aisladas que contengan arcilla o"
+            + "<br>&nbsp &nbsp &nbsp roca químicamente desintegrada (Profundidad de"
+            + "<br>&nbsp &nbsp &nbsp excavación > 50m)</HTML>");
+            cbSRF.addItem(
+            "<HTML>D. Múltiples zonas de fractura de roca competente sin"
+            + "<br>&nbsp &nbsp &nbsp arcilla , roca circundante suelta, cualquier profundidad</HTML>");
+            cbSRF.addItem(
+            "<HTML>E. Zonas de fracturas aisladas en roca competente sin"
+            + "<br>&nbsp &nbsp &nbsp arcilla, profundidad de excavación < 50m</HTML>");
+            cbSRF.addItem(
+            "<HTML>F. Zonas de fracturas aisladas en roca competente sin"
+            + "<br>&nbsp &nbsp &nbsp arcilla, profundidad de excavación > 50m</HTML>");
+            cbSRF.addItem(
+            "<HTML>G. Diaclasas abiertas sueltas, diaclasado intenso"
+            + "<br>&nbsp &nbsp &nbsp cualquier profundidad</HTML>");
+        }
+        if(e.getSource() == rbTable2){
+            cbSRF.removeAllItems();
+            cbSRF.addItem(
+            "H. Tensiones bajas cerca de la superficie");
+            cbSRF.addItem(
+            "I. Tensiones de nivel medio");
+            cbSRF.addItem(
+            "<HTML>J. Elevado nivel de tensiones, estructura muy cerrada"
+            + "<br>&nbsp &nbsp &nbsp generalmente favorable para la estabilidad, puede"
+            + "<br>&nbsp &nbsp &nbsp ser desfavorable para la estabilidad de las paredes</HTML>");
+            cbSRF.addItem(
+            "<HTML>K. Planchoneo moderado después de una hora en roca "
+            + "<br>&nbsp &nbsp &nbsp masiva</HTML>");
+            cbSRF.addItem(
+            "<HTML>L. Planchoneo y explosión de roca en pocis minutos en "
+            + "<br>&nbsp &nbsp &nbsp roca masiva< 50m</HTML>");
+            cbSRF.addItem(
+            "<HTML>M. Intensa explosión de roca e inmediatamente deformación"
+            + "<br>&nbsp &nbsp &nbsp dinámica en roca masiva</HTML>");
+        }
+        if(e.getSource() == rbTable3){
+            cbSRF.removeAllItems();
+            cbSRF.addItem(
+            "N. Presiones compresivas moderadas");
+            cbSRF.addItem(
+            "O. Presiones compresivas altas");
+            cbSRF.addItem(
+            "P. Presiones expansivas moderadas");
+            cbSRF.addItem(
+            "Q. Presiones expansicas altas");
+        }
+        if(e.getSource() == btnTables){
+            viewTables();
+        }
+        if(e.getSource() == btnCalculate){
+            int operationJn = 0;
+            int clJa = 0;
+            int tableChoice = 0;
+            //OperationJn
+            if(rbNone.isSelected()){
+                operationJn = 0;
+            } else if(rbTunnel.isSelected()){
+                operationJn = 1;
+            } else {
+                operationJn = 2;
+            }
+            //OperationJa
+            if(rbOptionAJa.isSelected()){
+                clJa = 0;
+            } else if(rbOptionBJa.isSelected()){
+                clJa = 1;
+            } else {
+                clJa = 2;
+            }
+            //Tables
+            if(rbTable1.isSelected()){
+                tableChoice = 0;
+            } else if(rbTable2.isSelected()){
+                tableChoice = 1;
+            } else {
+                tableChoice = 2;
+            }
+            System.out.println(mainWin.getManagementModern().calculateQ(
+                    cbDescriptionRQD.getSelectedIndex(), cbDescriptionJn.getSelectedIndex(), 
+                    operationJn, cbDescriptionJr.getSelectedIndex(), clJa, 
+                    cbDescriptionJa.getSelectedIndex(), cbDescriptionJw.getSelectedIndex(), 
+                    tableChoice, cbSRF.getSelectedIndex()));;
+        }
     }
     
     private void calculateValueJn(){
+        int operation = 0;
+        if(rbNone.isSelected()){
+            operation = 0;
+        } else if(rbTunnel.isSelected()){
+            operation = 1;
+        } else {
+            operation = 2;
+        }
         switch(cbDescriptionJn.getSelectedIndex()){
             case 0:
-                txValueJn.setText("");
+                txValueJn.setText(
+                        String.valueOf( mainWin.getManagementModern().calculateJn(0, operation) ));
                 txValueJn.setEditable(true);
                 break;
-            case 1:
-                txValueJn.setText("2");
+            case 1:txValueJn.setText(
+                        String.valueOf( mainWin.getManagementModern().calculateJn(1, operation) ));
                 txValueJn.setEditable(false);
                 break;   
             case 2:
-                txValueJn.setText("3");
+                txValueJn.setText(
+                        String.valueOf( mainWin.getManagementModern().calculateJn(2, operation) ));
                 txValueJn.setEditable(false);
                 break;
             case 3:
-                txValueJn.setText("4");
+                txValueJn.setText(
+                        String.valueOf( mainWin.getManagementModern().calculateJn(3, operation) )); 
                 txValueJn.setEditable(false);
                 break;
             case 4:
-                txValueJn.setText("6");
+                txValueJn.setText(
+                        String.valueOf( mainWin.getManagementModern().calculateJn(4, operation) ));
                 txValueJn.setEditable(false);
                 break;
             case 5:
-                txValueJn.setText("9");
+                txValueJn.setText(
+                        String.valueOf( mainWin.getManagementModern().calculateJn(5, operation) ));
                 txValueJn.setEditable(false);
                 break;
             case 6:
-                txValueJn.setText("12");
+                txValueJn.setText(
+                        String.valueOf( mainWin.getManagementModern().calculateJn(6, operation) ));
                 txValueJn.setEditable(false);
                 break;    
             case 7:
-                txValueJn.setText("15");
+                txValueJn.setText(
+                        String.valueOf( mainWin.getManagementModern().calculateJn(7, operation) ));
                 txValueJn.setEditable(false);
                 break;
             case 8:
-                txValueJn.setText("20");
+                txValueJn.setText(
+                        String.valueOf( mainWin.getManagementModern().calculateJn(8, operation) ));
                 txValueJn.setEditable(false);
                 break;    
+        }
+    }
+    
+    private void viewTables() {
+       try{
+            File path = new File("resours/Files/TableChoice.pdf");
+            Desktop.getDesktop().open(path);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
