@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uptc.softMin.gui;
+package uptc.softMin.gui.old;
 
 import java.awt.Desktop;
 import java.awt.Font;
@@ -24,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import uptc.softMin.gui.MainWindow;
 /**
  * @author Sergio y Alejandro
  */

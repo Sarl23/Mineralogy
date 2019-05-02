@@ -1,4 +1,4 @@
-package uptc.softMin.logic;
+package uptc.softMin.logic.old;
 /**
  *
  * @author Sergio Rojas y Jimmy Plazas
