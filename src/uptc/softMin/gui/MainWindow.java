@@ -7,8 +7,13 @@ package uptc.softMin.gui;
 
 import javax.swing.*;
 import java.awt.*;
-import uptc.softMin.logic.ManagementModern;
-import uptc.softMin.logic.ManagementOld;
+
+import uptc.softMin.gui.old.*;
+import uptc.softMin.gui.old.CLOld_Terzaghii;
+import uptc.softMin.gui.old.ClDeere;
+import uptc.softMin.gui.old.Cl_RSR;
+import uptc.softMin.logic.modern.ManagementModern;
+import uptc.softMin.logic.old.ManagementOld;
 
 public class MainWindow extends JFrame {
 
