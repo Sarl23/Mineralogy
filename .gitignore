@@ -1,3 +1,4 @@
-/dist/
-/build/
-/nbproject/
+# Generated files
+dist/
+build/
+nbproject/
