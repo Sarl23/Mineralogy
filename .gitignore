@@ -4,3 +4,6 @@ build/
 nbproject/
 
 .idea/
+nbproject
+build.xml
+manifest.mf
