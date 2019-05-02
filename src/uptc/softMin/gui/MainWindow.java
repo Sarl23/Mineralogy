@@ -19,7 +19,7 @@ public class MainWindow extends JFrame {
     private ManagementModern mgModern;
     private WindowCLOLD winOld;
     private HandlingEvents handlingEvents;
-    private CLOld_Terzaghi clOldTerzaghi;
+    private CLOld_Terzaghii clOldTerzaghii;
     private ClDeere clDeere;
     private Cl_RSR clRSR;
     private Cl_Q clBarton;
@@ -52,7 +52,7 @@ public class MainWindow extends JFrame {
         winOld = new WindowCLOLD(this);
         mgOld = new ManagementOld();
         mgModern = new ManagementModern();
-        clOldTerzaghi = new CLOld_Terzaghi(this);
+        clOldTerzaghii = new CLOld_Terzaghii(this);
         clDeere = new ClDeere(this);
         clRSR = new Cl_RSR(this);
         clBarton = new Cl_Q(this);
@@ -114,9 +114,10 @@ public class MainWindow extends JFrame {
         new WindowSCALAB(this).setVisible(true);
     }
 
-    public void goCLTerzaghi() {
-        clOldTerzaghi.cleanFields();
-        clOldTerzaghi.setVisible(true);
+
+     //correcion de logia de Terzaghi
+    public void goCLTerzaghii(){
+        clOldTerzaghii.setVisible(true);
     }
 
     public void goClDeere() {

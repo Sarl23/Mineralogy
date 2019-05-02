@@ -32,7 +32,8 @@ public class PanelMainwindow extends JPanel {
     @Override
     public void paintComponent(Graphics g){
         Dimension dimension= getSize();
-        ImageIcon ImageIcon = new ImageIcon("resours/images/mainWind.png");
+      //  ImageIcon ImageIcon = new ImageIcon("resours/images/mainWind.png");
+       ImageIcon ImageIcon = new ImageIcon("/uptc/softMin/imagen/mainWind.png");
         Image image = ImageIcon.getImage();
         g.drawImage(image, 0,0,dimension.width,dimension.height,null);
     }

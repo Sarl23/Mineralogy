@@ -16,6 +16,7 @@ public class WindowCLOLD extends JDialog implements ActionListener {
     private JLabel labimgOld;
     private JLabel titleOLD;
     private JButton terzaghi;
+    private JButton terzaghii; // correcion de la anterior clasificacion
     private JButton deere;
     private JButton wickham;
     private JButton back;
@@ -51,12 +52,13 @@ public class WindowCLOLD extends JDialog implements ActionListener {
         labimgOld.setBounds(0, 0, 700, 450);
 
 
-        terzaghi = new JButton("Clasificación de Terzaghi");
-        terzaghi.setBounds(20, 310, 180, 30);
-        terzaghi.setActionCommand(HandlingEvents.TERZAGHI);
-        terzaghi.addActionListener(mainWindow.getHandlingEvents());
-        terzaghi.setForeground(Color.BLACK);
-        terzaghi.setFont(new Font("mi font", Font.BOLD, 12));
+        terzaghii = new JButton("Clasificación de Terzaghi");
+        terzaghii.setBounds(20, 310, 190, 30);
+        terzaghii.setActionCommand(HandlingEvents.TERZAGHII);
+        terzaghii.addActionListener(mainWindow.getHandlingEvents());
+        terzaghii.setForeground(Color.BLACK);
+        terzaghii.setFont(new Font("mi font", Font.BOLD, 12));
+        
 
         deere = new JButton("Clasificación de Deere (RQD)");
         deere.setBounds(218, 310, 210, 30);
@@ -84,8 +86,9 @@ public class WindowCLOLD extends JDialog implements ActionListener {
     }
 
     private void addComponents() {
+        
         add(titleOLD);
-        add(terzaghi);
+        add(terzaghii);
         add(deere);
         add(wickham);
         add(back);

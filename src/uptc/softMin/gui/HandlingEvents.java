@@ -23,8 +23,7 @@ public class HandlingEvents implements WindowListener, ActionListener {
     public static final String clSCALAB = "Scalab";
     public static final String EXIT = "Salir";
     public static final String gpPAGE = "Pagina";
-
-    public static final String TERZAGHI = "terzaghi";
+    public static final String TERZAGHII = "terzaghii";//correccion de logica terzaghi
     public static final String DEERE = "deere";
     public static final String WICKHAM = "wickham";
 
@@ -58,8 +57,8 @@ public class HandlingEvents implements WindowListener, ActionListener {
                 System.out.println("madar a pagina del grupo");
                 break;
             // Begin old actions
-            case "terzaghi":
-                mainWindow.goCLTerzaghi();
+            case "terzaghii":
+                mainWindow.goCLTerzaghii();
                 break;
             case "deere":
                 mainWindow.goClDeere();
