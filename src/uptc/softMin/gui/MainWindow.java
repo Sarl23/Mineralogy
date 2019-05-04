@@ -42,7 +42,7 @@ public class MainWindow extends JFrame {
         this.setIconImage(image);
     }
 
-    public void begin() {
+    private void begin() {
         beginComponents();
         addComponents();
         //showTerms();   // show  lincese
