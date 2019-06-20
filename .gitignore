@@ -1,0 +1,10 @@
+# Generated files
+dist/
+build/
+nbproject/
+
+.idea/
+nbproject
+build.xml
+manifest.mf
+out
